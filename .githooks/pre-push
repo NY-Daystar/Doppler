@@ -53,11 +53,11 @@ function check() {
         ;;
 
     'restore')
-        [ $result_code != 0 ] && log_color "Error: Impossible to restore the project $(${SLN_PATH}).\ngit push canceled" "red" && exit 1
+        [ $result_code != 0 ] && log_color "Error: Impossible to restore the project ${SLN_PATH}.\ngit push canceled" "red" && exit 1
         ;;
 
     'compile')
-        [ $result_code != 0 ] && log_color "Error: Impossible to build the project $(${SLN_PATH}).\ngit push canceled" "red" && exit 1
+        [ $result_code != 0 ] && log_color "Error: Impossible to build the project ${SLN_PATH}.\ngit push canceled" "red" && exit 1
         ;;
 
     'unittest')

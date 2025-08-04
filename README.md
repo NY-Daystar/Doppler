@@ -21,7 +21,7 @@
 
 C# Windows Form project to screen captures periodically.
 
-[Installation Setup realize with this tutorial](https://gaby277.developpez.com/Tutoriels/VisualStudioInstallerProject/)
+![User interface](./Docs/UI.png)
 
 **Version: v1.0.0**
 
@@ -45,9 +45,13 @@ C# Windows Form project to screen captures periodically.
 2. Extract zip on your computer
 
 3. Launch `Doppler.exe`
+
     - The project ask you to choose a folder in your computer to rename files.
     - It will list folder files and submit several renaming.
     - After choosing one the application rename files automatically
+
+4. You will need to download FFMPEG from this link https://www.gyan.dev/ffmpeg/builds/#release-builds  
+   or download now with this link : https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
 
 ## Setup project
 
@@ -61,6 +65,8 @@ $ git clone git@github.com:NY-Daystar/Doppler.git
 3. Select `Doppler.sln`
 4. Rebuild solution
 5. F5 to launch project in Debug mode
+6. You will need to compile in 32/64bits
+    > [MSI build with this tutorial](https://gaby277.developpez.com/Tutoriels/VisualStudioInstallerProject/)
 
 ## Contact
 
