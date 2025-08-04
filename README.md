@@ -1,9 +1,23 @@
 # Doppler
 
-[![Doppler-CI](https://github.com/NY-Daystar/doppler/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/NY-Daystar/Doppler/actions/workflows/dotnet.yml)
+[![Doppler-CI](https://github.com/NY-Daystar/Doppler/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/NY-Daystar/Doppler/actions/workflows/dotnet.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Version](https://img.shields.io/github/tag/NY-Daystar/doppler.svg)](https://github.com/NY-Daystar/Doppler/releases)
 [![Total views](https://img.shields.io/sourcegraph/rrc/github.com/NY-Daystar/doppler.svg)](https://sourcegraph.com/github.com/NY-Daystar/doppler)
+
+![GitHub watchers](https://img.shields.io/github/watchers/ny-daystar/Doppler)
+![GitHub forks](https://img.shields.io/github/forks/ny-daystar/Doppler)
+![GitHub Repo stars](https://img.shields.io/github/stars/ny-daystar/Doppler)
+![GitHub repo size](https://img.shields.io/github/repo-size/ny-daystar/Doppler)
+![GitHub language count](https://img.shields.io/github/languages/count/ny-daystar/Doppler)
+![GitHub top language](https://img.shields.io/github/languages/top/ny-daystar/Doppler)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/ny-daystar/Doppler/main)
+![GitHub issues](https://img.shields.io/github/issues/ny-daystar/Doppler)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ny-daystar/Doppler)
+![GitHub](https://img.shields.io/github/license/ny-daystar/Doppler)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-blue.svg?style=circular)](#contributors)
+
+![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 
 C# Windows Form project to screen captures periodically.
 
@@ -23,8 +37,6 @@ C# Windows Form project to screen captures periodically.
 
 -   [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) >= 7.0
 -   For developpment: [VS 2022](https://visualstudio.microsoft.com/fr/vs/) >= 2022
--   Packages to install
-    -   [ConsoleTables](https://www.nuget.org/packages/ConsoleTables/2.4.2?_src=template)
 
 ## How to use
 
