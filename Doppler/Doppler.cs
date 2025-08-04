@@ -4,7 +4,8 @@ using System.Windows.Forms;
 
 namespace Doppler
 {
-    // TODO setup installer like Ankh project
+    // https://github.com/NY-Daystar/Doppler
+    // TODO ajouter une icone d'installation pour le setup
     internal static class Doppler
     {
         /// <summary>
