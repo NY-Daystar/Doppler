@@ -19,11 +19,16 @@
 
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 
-C# Windows Form project to screen captures periodically.
+C# Windows Form project to
+
+-   screen captures periodically from video
+-   truncate video with start and end time
 
 ![User interface](./Docs/UI.png)
 
-**Version: v1.0.0**
+![User interface tab2](./Docs/UI-tab2.png)
+
+**Version: v1.1.0**
 
 ## Summary
 
@@ -40,7 +45,7 @@ C# Windows Form project to screen captures periodically.
 
 ## How to use
 
-1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.0.0/Doppler.v1.0.zip)
+1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.1.0/Doppler-portable-v1.1.0.zip)
 
 2. Extract zip on your computer
 
