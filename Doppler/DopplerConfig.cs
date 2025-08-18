@@ -33,6 +33,18 @@ namespace Doppler
         public string FfmpegPath { get; set; } = string.Empty;
 
         /// <summary>
+        /// Path of FFMPEG path executable
+        /// </summary>
+        [JsonPropertyName("start")]
+        public string StartTime { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Path of FFMPEG path executable
+        /// </summary>
+        [JsonPropertyName("end")]
+        public string EndTime { get; set; } = string.Empty;
+
+        /// <summary>
         /// Config file store in AppData folder : %APPDATA%\Addams
         /// </summary>
         public static string ConfigFilepath
@@ -75,6 +87,8 @@ namespace Doppler
             SourcePath = string.Empty;
             DestinationFolderPath = string.Empty;
             FfmpegPath = string.Empty;
+            StartTime = string.Empty;
+            EndTime = string.Empty;
         }
 
         /// <summary>

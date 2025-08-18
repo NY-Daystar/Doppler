@@ -1,4 +1,6 @@
-﻿using NLog;
+﻿using Doppler.Tabs;
+using Doppler.Utils;
+using NLog;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -12,19 +14,28 @@ namespace Doppler
         /// <summary>
         /// Configuration of the application
         /// </summary>
-        private readonly DopplerConfig config;
+        private readonly DopplerConfig Config;
 
-        // README faire un screen de l'application
+        /// <summary>
+        /// Tabs List functionalities
+        /// </summary>
+        private VideoTruncater Truncater;
+        private ImageConverter Converter;
+        private FileManager FileManager;
 
         public DopplerForm()
         {
-            InitializeComponent();
-            Logger.Debug("Load application");
-
-            config = DopplerConfig.Get();
             Logger.Debug("Load Configuration");
+            Config = DopplerConfig.Get();
 
+            Logger.Debug("Setup components");
             SetupComponents();
+
+            Logger.Debug("Load Components");
+            InitializeComponent();
+
+            Logger.Debug("Load Components");
+            AttachComponents();
         }
 
         /// <summary>
@@ -32,67 +43,20 @@ namespace Doppler
         /// </summary>
         private void SetupComponents()
         {
-            textBoxSourceFile.Text = config.SourcePath;
-            textBoxDestinationFolder.Text = config.DestinationFolderPath;
-            textBoxFfmpegPath.Text = config.FfmpegPath;
-        }
-
-        private string BuildFfmpegCommand()
-        {
-            return $"{config.FfmpegPath} -i {config.SourcePath} -vf fps=1 {config.DestinationFolderPath}/image%04d.png";
+            FileManager = new FileManager();
+            Converter = new ImageConverter(Config, FileManager);
+            Truncater = new VideoTruncater(Config, FileManager);
         }
 
         /// <summary>
-        /// Build and launch FFMPEG command to generate images
+        /// Load data in UI from Configuration
         /// </summary>
-        private void Launch(object sender, EventArgs e)
+        private void AttachComponents()
         {
-            string cmd = BuildFfmpegCommand();
-            Logger.Debug(cmd);
-
-            ProcessStartInfo info = new ProcessStartInfo("cmd.exe")
-            {
-                Arguments = $"/K {cmd}"
-            };
-            Process.Start(info);
-
-            Process.Start("explorer.exe", config.DestinationFolderPath);
-
-            MessageBox.Show("Launch FFMPEG");
-        }
-
-        private void GetVideoToConvert(object sender, EventArgs e)
-        {
-            openFileDialogSource.ShowDialog();
-            textBoxSourceFile.Text = openFileDialogSource.FileName;
-            config.SourcePath = openFileDialogSource.FileName;
-            config.Save();
-        }
-
-        private void ShowDestingationFolder(object sender, EventArgs e)
-        {
-            openFileDialogDestination.CheckFileExists = false;
-            openFileDialogDestination.ValidateNames = false;
-
-            if (openFileDialogDestination.ShowDialog() == DialogResult.OK)
-            {
-                string folderPath = System.IO.Path.GetDirectoryName(openFileDialogDestination.FileName);
-                textBoxDestinationFolder.Text = folderPath;
-                config.DestinationFolderPath = folderPath;
-                config.Save();
-            }
-            else
-            {
-                MessageBox.Show("Aucun dossier sélectionné.");
-            }
-        }
-
-        private void GetFFMPEGfile(object sender, EventArgs e)
-        {
-            openFileDialogFfmpeg.ShowDialog(this);
-            textBoxFfmpegPath.Text = openFileDialogFfmpeg.FileName;
-            config.FfmpegPath = openFileDialogFfmpeg.FileName;
-            config.Save();
+            versionLabel.Text = $"Version: v{Constants.VERSION}";
+            FileManager.AttachComponents(this);
+            Converter.AttachComponents(this);
+            Truncater.AttachComponents(this);
         }
 
         private void RedirectToDownload(object sender, EventArgs e)
@@ -103,7 +67,7 @@ namespace Doppler
             }
             catch (System.ComponentModel.Win32Exception noBrowser)
             {
-                if (noBrowser.ErrorCode == -2147467259)
+                if (noBrowser.ErrorCode == -21_47_46_72_59)
                     MessageBox.Show(noBrowser.Message);
             }
             catch (System.Exception other)
@@ -120,10 +84,10 @@ namespace Doppler
             }
             catch (System.ComponentModel.Win32Exception noBrowser)
             {
-                if (noBrowser.ErrorCode == -2147467259)
+                if (noBrowser.ErrorCode == -21_47_46_72_59)
                     MessageBox.Show(noBrowser.Message);
             }
-            catch (System.Exception other)
+            catch (Exception other)
             {
                 MessageBox.Show(other.Message);
             }
