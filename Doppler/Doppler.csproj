@@ -117,6 +117,8 @@
     <Compile Include="Components\Switch.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Tabs\Mp3Converter.cs" />
+    <Compile Include="Tabs\VideoMerger.cs" />
     <Compile Include="Utils\AutoUpdater.cs" />
     <Compile Include="Utils\DopplerTheme.cs" />
     <Compile Include="Utils\FileManager.cs" />

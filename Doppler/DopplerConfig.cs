@@ -34,6 +34,12 @@ namespace Doppler
         public string FfmpegPath { get; set; } = string.Empty;
 
         /// <summary>
+        /// Path of seconde source video file to merge with SourcePath
+        /// </summary>
+        [JsonPropertyName("merge_path")]
+        public string MergePath { get; set; } = string.Empty;
+
+        /// <summary>
         /// Start time to truncate video
         /// </summary>
         [JsonPropertyName("start")]

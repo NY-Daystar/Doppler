@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Project releases
 
+## v1.3.0 - 20 August 2025 - 2 new tools
+
+#### Added
+
+-   new tool to concatenate two videos
+-   new tool to convert any music format into mp3
+
 ## v1.2.0 - 19 August 2025 - resolving issues
 
 #### Added

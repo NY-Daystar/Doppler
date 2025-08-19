@@ -23,12 +23,18 @@ C# Windows Form project to
 
 -   screen captures periodically from video
 -   truncate video with start and end time
+-   convert any audio format to mp3
+-   concatenate two videos
 
 ![User interface](./Docs/UI.png)
 
 ![User interface tab2](./Docs/UI-tab2.png)
 
-**Version: v1.1.0**
+![User interface tab3](./Docs/UI-tab3.png)
+
+![User interface tab4](./Docs/UI-tab4.png)
+
+**Version: v1.3.0**
 
 ## Summary
 
@@ -45,7 +51,7 @@ C# Windows Form project to
 
 ## How to use
 
-1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.1.0/Doppler-portable-v1.1.0.zip)
+1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.3.0/Doppler-portable-v1.3.0.zip)
 
 2. Extract zip on your computer
 
