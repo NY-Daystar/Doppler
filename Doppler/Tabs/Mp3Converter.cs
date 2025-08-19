@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace Doppler.Tabs
 {
-    public class VideoTruncater : ITab
+    public class Mp3Converter : ITab
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly DopplerConfig Config;
         private readonly FileManager FileManager;
 
-        private TextBox SourceFile, DestinationFolder, PathFfmpeg, StartTime, EndTime;
+        private TextBox SourceFile, DestinationFolder, PathFfmpeg;
         private Button SourceButton, DestinationButton, FfMpegButton;
 
-        public VideoTruncater(DopplerConfig config, FileManager fileManager)
+        public Mp3Converter(DopplerConfig config, FileManager fileManager)
         {
             Config = config;
             FileManager = fileManager;
@@ -25,27 +25,23 @@ namespace Doppler.Tabs
 
         public void AttachComponents(DopplerForm application)
         {
-            SourceFile = application.textBoxSourceFile2;
-            DestinationFolder = application.textBoxDestinationFolder2;
-            PathFfmpeg = application.textBoxFfmpegPath2;
-            StartTime = application.startTime;
-            EndTime = application.endTime;
+            SourceFile = application.textBoxSourceFile3;
+            DestinationFolder = application.textBoxDestinationFolder3;
+            PathFfmpeg = application.textBoxFfmpegPath3;
 
-            SourceButton = application.sourceVideoButton2;
-            DestinationButton = application.destinationFolderButton2;
-            FfMpegButton = application.ffmpegButton2;
+            SourceButton = application.sourceMusicButton;
+            DestinationButton = application.destinationFolderButton3;
+            FfMpegButton = application.ffmpegButton3;
 
             SourceFile.Text = Config.SourcePath;
             DestinationFolder.Text = Config.DestinationFolderPath;
             PathFfmpeg.Text = Config.FfmpegPath;
-            StartTime.Text = Config.StartTime;
-            EndTime.Text = Config.EndTime;
         }
 
         public void Launch(object sender, EventArgs e)
         {
-            Logger.Info("Launch video truncater");
-            string cmd = $"{Config.FfmpegPath} -i \"{Config.SourcePath}\" -ss  {Config.StartTime} -to {Config.EndTime} -c copy \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}-{Config.StartTime.Replace(":", "_")}-{Config.EndTime.Replace(":", "_")}.mp4\"";
+            Logger.Info("Launch Mp3 Converter");
+            string cmd = $"{Config.FfmpegPath} -i \"{Config.SourcePath}\" -codec:a libmp3lame -qscale:a 2 \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}.mp3\"";
             Logger.Debug(cmd);
 
             ProcessStartInfo info = new ProcessStartInfo("cmd.exe")
@@ -83,20 +79,6 @@ namespace Doppler.Tabs
                 var filePath = FileManager.SearchFile();
                 PathFfmpeg.Text = filePath;
                 Config.FfmpegPath = filePath;
-                Config.Save();
-            }
-        }
-
-        public void DefineTime(object sender, EventArgs e)
-        {
-            if (sender == StartTime)
-            {
-                Config.StartTime = StartTime.Text;
-                Config.Save();
-            }
-            else if(sender == EndTime)
-            {
-                Config.EndTime = EndTime.Text;
                 Config.Save();
             }
         }

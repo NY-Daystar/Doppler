@@ -70,10 +70,41 @@ namespace Doppler
             this.sourceVideoButton2 = new System.Windows.Forms.Button();
             this.textBoxSourceFile2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.Mp3ConvertButton = new System.Windows.Forms.Button();
+            this.ffmpegButton3 = new System.Windows.Forms.Button();
+            this.textBoxFfmpegPath3 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.destinationFolderButton3 = new System.Windows.Forms.Button();
+            this.textBoxDestinationFolder3 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.sourceMusicButton = new System.Windows.Forms.Button();
+            this.textBoxSourceFile3 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.sourceVideoButton4 = new System.Windows.Forms.Button();
+            this.textBoxSourceFile5 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.MergeVideoButton = new System.Windows.Forms.Button();
+            this.ffmpegButton4 = new System.Windows.Forms.Button();
+            this.textBoxFfmpegPath4 = new System.Windows.Forms.TextBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.destinationFolderButton4 = new System.Windows.Forms.Button();
+            this.textBoxDestinationFolder4 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.sourceVideoButton3 = new System.Windows.Forms.Button();
+            this.textBoxSourceFile4 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.themeSwitch = new Switch();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // ConvertImageButton
@@ -140,7 +171,7 @@ namespace Doppler
             this.sourceVideoButton.Name = "sourceVideoButton";
             this.sourceVideoButton.Size = new System.Drawing.Size(75, 23);
             this.sourceVideoButton.TabIndex = 6;
-            this.sourceVideoButton.Text = "choisir";
+            this.sourceVideoButton.Text = "Choose";
             this.sourceVideoButton.UseVisualStyleBackColor = true;
             this.sourceVideoButton.Click += this.Converter.DefinePath;
             // 
@@ -150,7 +181,7 @@ namespace Doppler
             this.destinationFolderButton.Name = "destinationFolderButton";
             this.destinationFolderButton.Size = new System.Drawing.Size(75, 23);
             this.destinationFolderButton.TabIndex = 7;
-            this.destinationFolderButton.Text = "choisir";
+            this.destinationFolderButton.Text = "Choose";
             this.destinationFolderButton.UseVisualStyleBackColor = true;
             this.destinationFolderButton.Click += this.Converter.DefinePath;
             // 
@@ -160,7 +191,7 @@ namespace Doppler
             this.ffmpegButton.Name = "ffmpegButton";
             this.ffmpegButton.Size = new System.Drawing.Size(75, 23);
             this.ffmpegButton.TabIndex = 11;
-            this.ffmpegButton.Text = "choisir";
+            this.ffmpegButton.Text = "Choose";
             this.ffmpegButton.UseVisualStyleBackColor = true;
             this.ffmpegButton.Click += this.Converter.DefinePath;
             // 
@@ -229,6 +260,8 @@ namespace Doppler
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -301,6 +334,7 @@ namespace Doppler
             this.endTime.Name = "endTime";
             this.endTime.Size = new System.Drawing.Size(110, 20);
             this.endTime.TabIndex = 22;
+            this.endTime.TextChanged += this.Truncater.DefineTime;
             // 
             // startTime
             // 
@@ -308,6 +342,7 @@ namespace Doppler
             this.startTime.Name = "startTime";
             this.startTime.Size = new System.Drawing.Size(117, 20);
             this.startTime.TabIndex = 21;
+            this.startTime.TextChanged += this.Truncater.DefineTime;
             // 
             // label10
             // 
@@ -343,7 +378,7 @@ namespace Doppler
             this.ffmpegButton2.Name = "ffmpegButton2";
             this.ffmpegButton2.Size = new System.Drawing.Size(75, 23);
             this.ffmpegButton2.TabIndex = 17;
-            this.ffmpegButton2.Text = "choisir";
+            this.ffmpegButton2.Text = "Choose";
             this.ffmpegButton2.UseVisualStyleBackColor = true;
             this.ffmpegButton2.Click += this.Truncater.DefinePath;
             // 
@@ -362,6 +397,7 @@ namespace Doppler
             this.button9.TabIndex = 15;
             this.button9.Text = "Download";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.LinkToDownload);
             // 
             // button8
             // 
@@ -372,6 +408,7 @@ namespace Doppler
             this.button8.TabIndex = 14;
             this.button8.Text = "?";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.RedirectToDownload);
             // 
             // label9
             // 
@@ -388,7 +425,7 @@ namespace Doppler
             this.destinationFolderButton2.Name = "destinationFolderButton2";
             this.destinationFolderButton2.Size = new System.Drawing.Size(75, 23);
             this.destinationFolderButton2.TabIndex = 12;
-            this.destinationFolderButton2.Text = "choisir";
+            this.destinationFolderButton2.Text = "Choose";
             this.destinationFolderButton2.UseVisualStyleBackColor = true;
             this.destinationFolderButton2.Click += this.Truncater.DefinePath;
             // 
@@ -414,7 +451,7 @@ namespace Doppler
             this.sourceVideoButton2.Name = "sourceVideoButton2";
             this.sourceVideoButton2.Size = new System.Drawing.Size(75, 23);
             this.sourceVideoButton2.TabIndex = 7;
-            this.sourceVideoButton2.Text = "choisir";
+            this.sourceVideoButton2.Text = "Choose";
             this.sourceVideoButton2.UseVisualStyleBackColor = true;
             this.sourceVideoButton2.Click += this.Truncater.DefinePath;
             // 
@@ -434,6 +471,297 @@ namespace Doppler
             this.label7.TabIndex = 5;
             this.label7.Text = "Choose a video";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.Mp3ConvertButton);
+            this.tabPage3.Controls.Add(this.ffmpegButton3);
+            this.tabPage3.Controls.Add(this.textBoxFfmpegPath3);
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.button6);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.destinationFolderButton3);
+            this.tabPage3.Controls.Add(this.textBoxDestinationFolder3);
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.sourceMusicButton);
+            this.tabPage3.Controls.Add(this.textBoxSourceFile3);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(762, 369);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "ConvertMp3";
+            // 
+            // Mp3ConvertButton
+            // 
+            this.Mp3ConvertButton.Location = new System.Drawing.Point(276, 310);
+            this.Mp3ConvertButton.Name = "Mp3ConvertButton";
+            this.Mp3ConvertButton.Size = new System.Drawing.Size(133, 23);
+            this.Mp3ConvertButton.TabIndex = 30;
+            this.Mp3ConvertButton.Text = "Convert to MP3";
+            this.Mp3ConvertButton.UseVisualStyleBackColor = true;
+            this.Mp3ConvertButton.Click += this.Mp3Converter.Launch;
+            // 
+            // ffmpegButton3
+            // 
+            this.ffmpegButton3.Location = new System.Drawing.Point(444, 213);
+            this.ffmpegButton3.Name = "ffmpegButton3";
+            this.ffmpegButton3.Size = new System.Drawing.Size(75, 23);
+            this.ffmpegButton3.TabIndex = 29;
+            this.ffmpegButton3.Text = "Choose";
+            this.ffmpegButton3.UseVisualStyleBackColor = true;
+            this.ffmpegButton3.Click += this.Mp3Converter.DefinePath;
+            // 
+            // textBoxFfmpegPath3
+            // 
+            this.textBoxFfmpegPath3.Location = new System.Drawing.Point(58, 213);
+            this.textBoxFfmpegPath3.Name = "textBoxFfmpegPath3";
+            this.textBoxFfmpegPath3.Size = new System.Drawing.Size(379, 20);
+            this.textBoxFfmpegPath3.TabIndex = 28;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(216, 189);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(91, 23);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "Download";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.LinkToDownload);
+            // 
+            // button6
+            // 
+            this.button6.Cursor = System.Windows.Forms.Cursors.Help;
+            this.button6.Location = new System.Drawing.Point(187, 189);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(23, 23);
+            this.button6.TabIndex = 26;
+            this.button6.Text = "?";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.RedirectToDownload);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(55, 194);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(126, 13);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Location of FFMPEG.exe";
+            // 
+            // destinationFolderButton3
+            // 
+            this.destinationFolderButton3.Location = new System.Drawing.Point(444, 107);
+            this.destinationFolderButton3.Name = "destinationFolderButton3";
+            this.destinationFolderButton3.Size = new System.Drawing.Size(75, 23);
+            this.destinationFolderButton3.TabIndex = 24;
+            this.destinationFolderButton3.Text = "Choose";
+            this.destinationFolderButton3.UseVisualStyleBackColor = true;
+            this.destinationFolderButton3.Click += this.Mp3Converter.DefinePath;
+            // 
+            // textBoxDestinationFolder3
+            // 
+            this.textBoxDestinationFolder3.Location = new System.Drawing.Point(57, 109);
+            this.textBoxDestinationFolder3.Name = "textBoxDestinationFolder3";
+            this.textBoxDestinationFolder3.Size = new System.Drawing.Size(380, 20);
+            this.textBoxDestinationFolder3.TabIndex = 23;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(55, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(175, 13);
+            this.label13.TabIndex = 22;
+            this.label13.Text = "Select the folder to save mp3 music";
+            // 
+            // sourceMusicButton
+            // 
+            this.sourceMusicButton.Location = new System.Drawing.Point(443, 61);
+            this.sourceMusicButton.Name = "sourceMusicButton";
+            this.sourceMusicButton.Size = new System.Drawing.Size(75, 23);
+            this.sourceMusicButton.TabIndex = 21;
+            this.sourceMusicButton.Text = "Choose";
+            this.sourceMusicButton.UseVisualStyleBackColor = true;
+            this.sourceMusicButton.Click += this.Mp3Converter.DefinePath;
+            // 
+            // textBoxSourceFile3
+            // 
+            this.textBoxSourceFile3.Location = new System.Drawing.Point(58, 61);
+            this.textBoxSourceFile3.Name = "textBoxSourceFile3";
+            this.textBoxSourceFile3.Size = new System.Drawing.Size(379, 20);
+            this.textBoxSourceFile3.TabIndex = 20;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(55, 45);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(191, 13);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Choose a music (mp4, ogg, m4a, etc...)";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.sourceVideoButton4);
+            this.tabPage4.Controls.Add(this.textBoxSourceFile5);
+            this.tabPage4.Controls.Add(this.label18);
+            this.tabPage4.Controls.Add(this.MergeVideoButton);
+            this.tabPage4.Controls.Add(this.ffmpegButton4);
+            this.tabPage4.Controls.Add(this.textBoxFfmpegPath4);
+            this.tabPage4.Controls.Add(this.button7);
+            this.tabPage4.Controls.Add(this.button10);
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Controls.Add(this.destinationFolderButton4);
+            this.tabPage4.Controls.Add(this.textBoxDestinationFolder4);
+            this.tabPage4.Controls.Add(this.label16);
+            this.tabPage4.Controls.Add(this.sourceVideoButton3);
+            this.tabPage4.Controls.Add(this.textBoxSourceFile4);
+            this.tabPage4.Controls.Add(this.label17);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(762, 369);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "MergeVideos";
+            // 
+            // sourceVideoButton4
+            // 
+            this.sourceVideoButton4.Location = new System.Drawing.Point(457, 117);
+            this.sourceVideoButton4.Name = "sourceVideoButton4";
+            this.sourceVideoButton4.Size = new System.Drawing.Size(75, 23);
+            this.sourceVideoButton4.TabIndex = 45;
+            this.sourceVideoButton4.Text = "Choose";
+            this.sourceVideoButton4.UseVisualStyleBackColor = true;
+            this.sourceVideoButton4.Click += this.VideoMerger.DefinePath;
+            // 
+            // textBoxSourceFile5
+            // 
+            this.textBoxSourceFile5.Location = new System.Drawing.Point(72, 117);
+            this.textBoxSourceFile5.Name = "textBoxSourceFile5";
+            this.textBoxSourceFile5.Size = new System.Drawing.Size(379, 20);
+            this.textBoxSourceFile5.TabIndex = 44;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(69, 101);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(110, 13);
+            this.label18.TabIndex = 43;
+            this.label18.Text = "Choose second video";
+            // 
+            // MergeVideoButton
+            // 
+            this.MergeVideoButton.Location = new System.Drawing.Point(291, 322);
+            this.MergeVideoButton.Name = "MergeVideoButton";
+            this.MergeVideoButton.Size = new System.Drawing.Size(133, 23);
+            this.MergeVideoButton.TabIndex = 42;
+            this.MergeVideoButton.Text = "Merge videos";
+            this.MergeVideoButton.UseVisualStyleBackColor = true;
+            this.MergeVideoButton.Click += this.VideoMerger.Launch;
+            // 
+            // ffmpegButton4
+            // 
+            this.ffmpegButton4.Location = new System.Drawing.Point(459, 225);
+            this.ffmpegButton4.Name = "ffmpegButton4";
+            this.ffmpegButton4.Size = new System.Drawing.Size(75, 23);
+            this.ffmpegButton4.TabIndex = 41;
+            this.ffmpegButton4.Text = "Choose";
+            this.ffmpegButton4.UseVisualStyleBackColor = true;
+            this.ffmpegButton4.Click += this.VideoMerger.DefinePath;
+            // 
+            // textBoxFfmpegPath4
+            // 
+            this.textBoxFfmpegPath4.Location = new System.Drawing.Point(73, 225);
+            this.textBoxFfmpegPath4.Name = "textBoxFfmpegPath4";
+            this.textBoxFfmpegPath4.Size = new System.Drawing.Size(379, 20);
+            this.textBoxFfmpegPath4.TabIndex = 40;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(231, 201);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(91, 23);
+            this.button7.TabIndex = 39;
+            this.button7.Text = "Download";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.LinkToDownload);
+            // 
+            // button10
+            // 
+            this.button10.Cursor = System.Windows.Forms.Cursors.Help;
+            this.button10.Location = new System.Drawing.Point(202, 201);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(23, 23);
+            this.button10.TabIndex = 38;
+            this.button10.Text = "?";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.RedirectToDownload);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(70, 206);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(126, 13);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "Location of FFMPEG.exe";
+            // 
+            // destinationFolderButton4
+            // 
+            this.destinationFolderButton4.Location = new System.Drawing.Point(458, 173);
+            this.destinationFolderButton4.Name = "destinationFolderButton4";
+            this.destinationFolderButton4.Size = new System.Drawing.Size(75, 23);
+            this.destinationFolderButton4.TabIndex = 36;
+            this.destinationFolderButton4.Text = "Choose";
+            this.destinationFolderButton4.UseVisualStyleBackColor = true;
+            this.destinationFolderButton4.Click += this.VideoMerger.DefinePath;
+            // 
+            // textBoxDestinationFolder4
+            // 
+            this.textBoxDestinationFolder4.Location = new System.Drawing.Point(72, 175);
+            this.textBoxDestinationFolder4.Name = "textBoxDestinationFolder4";
+            this.textBoxDestinationFolder4.Size = new System.Drawing.Size(380, 20);
+            this.textBoxDestinationFolder4.TabIndex = 35;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(70, 159);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(175, 13);
+            this.label16.TabIndex = 34;
+            this.label16.Text = "Select the folder to save mp3 music";
+            // 
+            // sourceVideoButton3
+            // 
+            this.sourceVideoButton3.Location = new System.Drawing.Point(458, 73);
+            this.sourceVideoButton3.Name = "sourceVideoButton3";
+            this.sourceVideoButton3.Size = new System.Drawing.Size(75, 23);
+            this.sourceVideoButton3.TabIndex = 33;
+            this.sourceVideoButton3.Text = "Choose";
+            this.sourceVideoButton3.UseVisualStyleBackColor = true;
+            this.sourceVideoButton3.Click += this.VideoMerger.DefinePath;
+            // 
+            // textBoxSourceFile4
+            // 
+            this.textBoxSourceFile4.Location = new System.Drawing.Point(73, 73);
+            this.textBoxSourceFile4.Name = "textBoxSourceFile4";
+            this.textBoxSourceFile4.Size = new System.Drawing.Size(379, 20);
+            this.textBoxSourceFile4.TabIndex = 32;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(70, 57);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(91, 13);
+            this.label17.TabIndex = 31;
+            this.label17.Text = "Choose first video";
+            // 
             // themeSwitch
             // 
             this.themeSwitch.Appearance = System.Windows.Forms.Appearance.Button;
@@ -443,7 +771,7 @@ namespace Doppler
             this.themeSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.themeSwitch.Location = new System.Drawing.Point(16, 13);
             this.themeSwitch.MinimumSize = new System.Drawing.Size(30, 15);
-            this.themeSwitch.Name = "switch1";
+            this.themeSwitch.Name = "themeSwitch";
             this.themeSwitch.Size = new System.Drawing.Size(53, 23);
             this.themeSwitch.TabIndex = 17;
             this.themeSwitch.Text = "switch1";
@@ -467,6 +795,10 @@ namespace Doppler
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,6 +849,35 @@ namespace Doppler
         public System.Windows.Forms.Label label10;
         public System.Windows.Forms.Label label11;
         public Switch themeSwitch;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        public System.Windows.Forms.Button Mp3ConvertButton;
+        public System.Windows.Forms.Button ffmpegButton3;
+        public System.Windows.Forms.TextBox textBoxFfmpegPath3;
+        public System.Windows.Forms.Button button3;
+        public System.Windows.Forms.Button button6;
+        public System.Windows.Forms.Label label12;
+        public System.Windows.Forms.Button destinationFolderButton3;
+        public System.Windows.Forms.TextBox textBoxDestinationFolder3;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.Button sourceMusicButton;
+        public System.Windows.Forms.TextBox textBoxSourceFile3;
+        public System.Windows.Forms.Label label14;
+        public System.Windows.Forms.Button sourceVideoButton4;
+        public System.Windows.Forms.TextBox textBoxSourceFile5;
+        public System.Windows.Forms.Label label18;
+        public System.Windows.Forms.Button MergeVideoButton;
+        public System.Windows.Forms.Button ffmpegButton4;
+        public System.Windows.Forms.TextBox textBoxFfmpegPath4;
+        public System.Windows.Forms.Button button7;
+        public System.Windows.Forms.Button button10;
+        public System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Button destinationFolderButton4;
+        public System.Windows.Forms.TextBox textBoxDestinationFolder4;
+        public System.Windows.Forms.Label label16;
+        public System.Windows.Forms.Button sourceVideoButton3;
+        public System.Windows.Forms.TextBox textBoxSourceFile4;
+        public System.Windows.Forms.Label label17;
     }
 }
 

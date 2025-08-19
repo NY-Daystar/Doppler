@@ -3,7 +3,7 @@
     public static class Constants
     {
         public const string PROJECT = "Doppler";
-        public const string VERSION = "1.2.0";
+        public const string VERSION = "1.3.0";
         public const string OWNER = "NY-Daystar";
         public static readonly string GITHUB_LINK = $"https://github.com/{OWNER}/{PROJECT}";
 

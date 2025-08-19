@@ -1,23 +1,24 @@
 ﻿using Doppler.Utils;
 using NLog;
 using System;
+using System.CodeDom.Compiler;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
 namespace Doppler.Tabs
 {
-    public class VideoTruncater : ITab
+    public class VideoMerger : ITab
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly DopplerConfig Config;
         private readonly FileManager FileManager;
 
-        private TextBox SourceFile, DestinationFolder, PathFfmpeg, StartTime, EndTime;
-        private Button SourceButton, DestinationButton, FfMpegButton;
+        private TextBox SourceFile1, SourceFile2, DestinationFolder, PathFfmpeg;
+        private Button SourceButton1, SourceButton2, DestinationButton, FfMpegButton;
 
-        public VideoTruncater(DopplerConfig config, FileManager fileManager)
+        public VideoMerger(DopplerConfig config, FileManager fileManager)
         {
             Config = config;
             FileManager = fileManager;
@@ -25,27 +26,29 @@ namespace Doppler.Tabs
 
         public void AttachComponents(DopplerForm application)
         {
-            SourceFile = application.textBoxSourceFile2;
-            DestinationFolder = application.textBoxDestinationFolder2;
-            PathFfmpeg = application.textBoxFfmpegPath2;
-            StartTime = application.startTime;
-            EndTime = application.endTime;
+            SourceFile1 = application.textBoxSourceFile4;
+            SourceFile2 = application.textBoxSourceFile5;
+            DestinationFolder = application.textBoxDestinationFolder4;
+            PathFfmpeg = application.textBoxFfmpegPath4;
 
-            SourceButton = application.sourceVideoButton2;
-            DestinationButton = application.destinationFolderButton2;
-            FfMpegButton = application.ffmpegButton2;
+            SourceButton1 = application.sourceVideoButton3;
+            SourceButton2 = application.sourceVideoButton4;
+            DestinationButton = application.destinationFolderButton4;
+            FfMpegButton = application.ffmpegButton;
 
-            SourceFile.Text = Config.SourcePath;
+            SourceFile1.Text = Config.SourcePath;
+            SourceFile2.Text = Config.MergePath;
             DestinationFolder.Text = Config.DestinationFolderPath;
             PathFfmpeg.Text = Config.FfmpegPath;
-            StartTime.Text = Config.StartTime;
-            EndTime.Text = Config.EndTime;
         }
 
         public void Launch(object sender, EventArgs e)
         {
-            Logger.Info("Launch video truncater");
-            string cmd = $"{Config.FfmpegPath} -i \"{Config.SourcePath}\" -ss  {Config.StartTime} -to {Config.EndTime} -c copy \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}-{Config.StartTime.Replace(":", "_")}-{Config.EndTime.Replace(":", "_")}.mp4\"";
+            Logger.Info("Launch video merger");
+            string tempFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
+            File.WriteAllText(tempFile, $"file '{Config.SourcePath}'\nfile '{Config.MergePath}'");
+
+            string cmd = $"{Config.FfmpegPath} -f concat -safe 0 -i {tempFile} \"{Config.DestinationFolderPath}/output.mp4\"";
             Logger.Debug(cmd);
 
             ProcessStartInfo info = new ProcessStartInfo("cmd.exe")
@@ -62,11 +65,19 @@ namespace Doppler.Tabs
         public void DefinePath(object sender, EventArgs e)
         {
             // To select source file
-            if (sender == SourceButton)
+            if (sender == SourceButton1)
             {
                 var filePath = FileManager.SearchFile();
-                SourceFile.Text = filePath;
+                SourceFile1.Text = filePath;
                 Config.SourcePath = filePath;
+                Config.Save();
+            }
+            // To select merge file
+            if (sender == SourceButton2)
+            {
+                var filePath = FileManager.SearchFile();
+                SourceFile2.Text = filePath;
+                Config.MergePath = filePath;
                 Config.Save();
             }
             // To select folder path
@@ -83,20 +94,6 @@ namespace Doppler.Tabs
                 var filePath = FileManager.SearchFile();
                 PathFfmpeg.Text = filePath;
                 Config.FfmpegPath = filePath;
-                Config.Save();
-            }
-        }
-
-        public void DefineTime(object sender, EventArgs e)
-        {
-            if (sender == StartTime)
-            {
-                Config.StartTime = StartTime.Text;
-                Config.Save();
-            }
-            else if(sender == EndTime)
-            {
-                Config.EndTime = EndTime.Text;
                 Config.Save();
             }
         }

@@ -23,6 +23,8 @@ namespace Doppler
         private ImageConverter Converter;
         private FileManager FileManager;
         private ThemeManager ThemeManager;
+        private Mp3Converter Mp3Converter;
+        private VideoMerger VideoMerger;
 
         public DopplerForm()
         {
@@ -50,6 +52,8 @@ namespace Doppler
             ThemeManager = new ThemeManager(Config);
             Converter = new ImageConverter(Config, FileManager);
             Truncater = new VideoTruncater(Config, FileManager);
+            Mp3Converter = new Mp3Converter(Config, FileManager);
+            VideoMerger = new VideoMerger(Config, FileManager);
         }
 
         /// <summary>
@@ -62,6 +66,8 @@ namespace Doppler
             ThemeManager.AttachComponents(this);
             Converter.AttachComponents(this);
             Truncater.AttachComponents(this);
+            Mp3Converter.AttachComponents(this);
+            VideoMerger.AttachComponents(this);
         }
 
         private void RedirectToDownload(object sender, EventArgs e)
