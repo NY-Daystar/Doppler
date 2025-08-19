@@ -1,4 +1,6 @@
-﻿namespace Doppler
+﻿using Doppler.Components;
+
+namespace Doppler
 {
     partial class DopplerForm
     {
@@ -51,6 +53,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
             this.endTime = new System.Windows.Forms.TextBox();
             this.startTime = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -67,7 +70,7 @@
             this.sourceVideoButton2 = new System.Windows.Forms.Button();
             this.textBoxSourceFile2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.themeSwitch = new Switch();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -282,13 +285,22 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "TruncateVideo";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(260, 14);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(292, 17);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Tool to truncate video with start and end time";
+            // 
             // endTime
             // 
             this.endTime.Location = new System.Drawing.Point(324, 144);
             this.endTime.Name = "endTime";
             this.endTime.Size = new System.Drawing.Size(110, 20);
             this.endTime.TabIndex = 22;
-            this.endTime.TextChanged += this.Truncater.DefineTime;
             // 
             // startTime
             // 
@@ -296,7 +308,6 @@
             this.startTime.Name = "startTime";
             this.startTime.Size = new System.Drawing.Size(117, 20);
             this.startTime.TabIndex = 21;
-            this.startTime.TextChanged += this.Truncater.DefineTime;
             // 
             // label10
             // 
@@ -423,21 +434,28 @@
             this.label7.TabIndex = 5;
             this.label7.Text = "Choose a video";
             // 
-            // label11
+            // themeSwitch
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(260, 14);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(217, 17);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "Tool to truncate video with start and end time";
+            this.themeSwitch.Appearance = System.Windows.Forms.Appearance.Button;
+            this.themeSwitch.AutoSize = true;
+            this.themeSwitch.BackColor = System.Drawing.Color.White;
+            this.themeSwitch.FlatAppearance.BorderSize = 0;
+            this.themeSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.themeSwitch.Location = new System.Drawing.Point(16, 13);
+            this.themeSwitch.MinimumSize = new System.Drawing.Size(30, 15);
+            this.themeSwitch.Name = "switch1";
+            this.themeSwitch.Size = new System.Drawing.Size(53, 23);
+            this.themeSwitch.TabIndex = 17;
+            this.themeSwitch.Text = "switch1";
+            this.themeSwitch.UseVisualStyleBackColor = false;
+            this.themeSwitch.Click += this.ThemeManager.ChangeTheme;
             // 
             // DopplerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 450);
+            this.Controls.Add(this.themeSwitch);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label4);
@@ -498,6 +516,7 @@
         public System.Windows.Forms.TextBox startTime;
         public System.Windows.Forms.Label label10;
         public System.Windows.Forms.Label label11;
+        public Switch themeSwitch;
     }
 }
 

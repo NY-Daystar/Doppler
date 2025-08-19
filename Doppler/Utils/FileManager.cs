@@ -34,11 +34,9 @@ namespace Doppler.Utils
             {
                 return System.IO.Path.GetDirectoryName(Dialog.FileName);
             }
-            else
-            {
-                MessageBox.Show("Aucun dossier sélectionné.");
-                return string.Empty;
-            }
+
+            MessageBox.Show("Aucun dossier sélectionné.");
+            return string.Empty;
         }
     }
 }

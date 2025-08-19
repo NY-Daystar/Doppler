@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Project releases
 
-## v1.1.0 - 18 August 2025 - First version
+## v1.2.0 - 19 August 2025 - resolving issues
+
+#### Added
+
+-   dark mode
+-   Auto-updater
+
+## v1.1.0 - 18 August 2025 - new tool to truncate video
 
 #### Added
 
