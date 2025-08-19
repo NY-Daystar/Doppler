@@ -1,4 +1,5 @@
 ﻿using Doppler.Exceptions;
+using Doppler.Utils;
 using NLog;
 using System;
 using System.IO;
@@ -33,16 +34,22 @@ namespace Doppler
         public string FfmpegPath { get; set; } = string.Empty;
 
         /// <summary>
-        /// Path of FFMPEG path executable
+        /// Start time to truncate video
         /// </summary>
         [JsonPropertyName("start")]
         public string StartTime { get; set; } = string.Empty;
 
         /// <summary>
-        /// Path of FFMPEG path executable
+        /// End time to truncate video
         /// </summary>
         [JsonPropertyName("end")]
         public string EndTime { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Light or Dark Theme
+        /// </summary>
+        [JsonPropertyName("theme")]
+        public DopplerTheme Theme { get; set; }
 
         /// <summary>
         /// Config file store in AppData folder : %APPDATA%\Addams
@@ -89,6 +96,7 @@ namespace Doppler
             FfmpegPath = string.Empty;
             StartTime = string.Empty;
             EndTime = string.Empty;
+            Theme = DopplerTheme.LIGHT;
         }
 
         /// <summary>

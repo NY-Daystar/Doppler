@@ -22,6 +22,7 @@ namespace Doppler
         private VideoTruncater Truncater;
         private ImageConverter Converter;
         private FileManager FileManager;
+        private ThemeManager ThemeManager;
 
         public DopplerForm()
         {
@@ -36,6 +37,8 @@ namespace Doppler
 
             Logger.Debug("Load Components");
             AttachComponents();
+
+            _ = AutoUpdater.CheckForUpdateAsync();
         }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace Doppler
         private void SetupComponents()
         {
             FileManager = new FileManager();
+            ThemeManager = new ThemeManager(Config);
             Converter = new ImageConverter(Config, FileManager);
             Truncater = new VideoTruncater(Config, FileManager);
         }
@@ -55,6 +59,7 @@ namespace Doppler
         {
             versionLabel.Text = $"Version: v{Constants.VERSION}";
             FileManager.AttachComponents(this);
+            ThemeManager.AttachComponents(this);
             Converter.AttachComponents(this);
             Truncater.AttachComponents(this);
         }
@@ -67,7 +72,7 @@ namespace Doppler
             }
             catch (System.ComponentModel.Win32Exception noBrowser)
             {
-                if (noBrowser.ErrorCode == -21_47_46_72_59)
+                if (noBrowser.ErrorCode == -2_147_467_259)
                     MessageBox.Show(noBrowser.Message);
             }
             catch (System.Exception other)
@@ -84,7 +89,7 @@ namespace Doppler
             }
             catch (System.ComponentModel.Win32Exception noBrowser)
             {
-                if (noBrowser.ErrorCode == -21_47_46_72_59)
+                if (noBrowser.ErrorCode == -2_147_467_259)
                     MessageBox.Show(noBrowser.Message);
             }
             catch (Exception other)

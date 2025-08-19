@@ -114,10 +114,16 @@
     </Compile>
     <Compile Include="Doppler.cs" />
     <Compile Include="Exceptions\DopplerConfigException.cs" />
+    <Compile Include="Components\Switch.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\AutoUpdater.cs" />
+    <Compile Include="Utils\DopplerTheme.cs" />
     <Compile Include="Utils\FileManager.cs" />
     <Compile Include="Tabs\ImageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tabs\VideoTruncater.cs" />
+    <Compile Include="Utils\ThemeManager.cs" />
     <EmbeddedResource Include="DopplerForm.resx">
       <DependentUpon>DopplerForm.cs</DependentUpon>
     </EmbeddedResource>
