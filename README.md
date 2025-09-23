@@ -1,5 +1,6 @@
 # Doppler
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e67d472149043a7aa075b7c2b88357c)](https://app.codacy.com/gh/NY-Daystar/Doppler?utm_source=github.com&utm_medium=referral&utm_content=NY-Daystar/Doppler&utm_campaign=Badge_Grade)
 [![Doppler-CI](https://github.com/NY-Daystar/Doppler/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/NY-Daystar/Doppler/actions/workflows/dotnet.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Version](https://img.shields.io/github/tag/NY-Daystar/doppler.svg)](https://github.com/NY-Daystar/Doppler/releases)
