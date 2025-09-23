@@ -45,21 +45,24 @@ namespace Doppler.Tabs
         public void Launch(object sender, EventArgs e)
         {
             Logger.Info("Launch video merger");
-            string tempFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
+            string tempFile = Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
             File.WriteAllText(tempFile, $"file '{Config.SourcePath}'\nfile '{Config.MergePath}'");
 
-            string cmd = $"{Config.FfmpegPath} -f concat -safe 0 -i {tempFile} \"{Config.DestinationFolderPath}/output.mp4\"";
-            Logger.Debug(cmd);
+            string argsCmd = $"-f concat -safe 0 -i {tempFile} -c copy \"{Path.Combine(Config.DestinationFolderPath, "output.mp4")}\"";
+            Logger.Debug($"{Config.FfmpegPath} {argsCmd}");
 
-            ProcessStartInfo info = new ProcessStartInfo("cmd.exe")
+            using (Process process = new Process())
             {
-                Arguments = $"/K {cmd}"
-            };
-            Process.Start(info);
+                process.StartInfo = new ProcessStartInfo
+                {
+                    FileName = Config.FfmpegPath,
+                    UseShellExecute = true,
+                    Arguments = argsCmd,
+                };
+                process.Start();
+            }
 
             Process.Start("explorer.exe", Config.DestinationFolderPath);
-
-            MessageBox.Show("Launch FFMPEG");
         }
 
         public void DefinePath(object sender, EventArgs e)
