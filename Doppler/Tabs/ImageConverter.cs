@@ -43,14 +43,20 @@ namespace Doppler.Tabs
         public void Launch(object sender, EventArgs e)
         {
             Logger.Info("Launch image Converter");
-            string cmd = $"{Config.FfmpegPath} -i \"{Config.SourcePath}\" -vf fps=1 \"{Config.DestinationFolderPath}/image%04d.png\"";
-            Logger.Debug(cmd);
 
-            ProcessStartInfo info = new ProcessStartInfo("cmd.exe")
+            string argsCmd = $"-i \"{Config.SourcePath}\" -vf fps=1 \"{Config.DestinationFolderPath}/image%04d.png\"";
+            Logger.Debug($"{Config.FfmpegPath} {argsCmd}");
+
+            using (Process process = new Process())
             {
-                Arguments = $"/K {cmd}"
-            };
-            Process.Start(info);
+                process.StartInfo = new ProcessStartInfo
+                {
+                    FileName = Config.FfmpegPath,
+                    UseShellExecute = true,
+                    Arguments = argsCmd,
+                };
+                process.Start();
+            }
 
             Process.Start("explorer.exe", Config.DestinationFolderPath);
         }
