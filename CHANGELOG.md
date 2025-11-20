@@ -7,27 +7,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Project releases
 
-## v1.3.1 - September, 23 2025 - fixes
+## v1.4.0 - November, 20th 2025 - combine pdf
+
+#### Added
+
+-   new tool to combine pdf
+
+## v1.3.1 - September, 23rd 2025 - fixes
 
 #### Fixes
 
 -   Destination of new videos after merging
 
-## v1.3.0 - August, 20 2025 - 2 new tools
+## v1.3.0 - August, 20th 2025 - 2 new tools
 
 #### Added
 
 -   new tool to concatenate two videos
 -   new tool to convert any music format into mp3
 
-## v1.2.0 - August, 19 2025 - resolving issues
+## v1.2.0 - August, 19th 2025 - resolving issues
 
 #### Added
 
 -   dark mode
 -   Auto-updater
 
-## v1.1.0 - August, 18 2025 - new tool to truncate video
+## v1.1.0 - August, 18th 2025 - new tool to truncate video
 
 #### Added
 
@@ -37,7 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -   Tabs system to navigate between tools
 
-## v1.0.0 - August, 4 2025 - First version
+## v1.0.0 - August, 4th 2025 - First version
 
 #### Added
 

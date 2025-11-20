@@ -99,12 +99,19 @@ namespace Doppler
             this.sourceVideoButton3 = new System.Windows.Forms.Button();
             this.textBoxSourceFile4 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.flowLayoutFiles = new System.Windows.Forms.FlowLayoutPanel();
+            this.PdfCombineButton = new System.Windows.Forms.Button();
+            this.resetFiles = new System.Windows.Forms.Button();
             this.themeSwitch = new Switch();
+            
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // ConvertImageButton
@@ -262,6 +269,7 @@ namespace Doppler
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -778,6 +786,74 @@ namespace Doppler
             this.themeSwitch.UseVisualStyleBackColor = false;
             this.themeSwitch.Click += this.ThemeManager.ChangeTheme;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage5.Controls.Add(this.resetFiles);
+            this.tabPage5.Controls.Add(this.progressBar1);
+            this.tabPage5.Controls.Add(this.flowLayoutFiles);
+            this.tabPage5.Controls.Add(this.PdfCombineButton);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(762, 369);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "PDF Combine";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(128, 232);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(453, 23);
+            this.progressBar1.TabIndex = 45;
+            // 
+            // flowLayoutFiles
+            // 
+            this.flowLayoutFiles.AllowDrop = true;
+            this.flowLayoutFiles.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutFiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutFiles.Location = new System.Drawing.Point(128, 51);
+            this.flowLayoutFiles.Name = "flowLayoutFiles";
+            this.flowLayoutFiles.Size = new System.Drawing.Size(453, 155);
+            this.flowLayoutFiles.TabIndex = 44;
+            this.flowLayoutFiles.DragDrop += this.PdfCombiner.Panel1_DragDrop;
+            this.flowLayoutFiles.DragEnter += this.PdfCombiner.Panel1_DragEnter;
+            // 
+            // PdfCombineButton
+            // 
+            this.PdfCombineButton.Location = new System.Drawing.Point(294, 321);
+            this.PdfCombineButton.Name = "PdfCombineButton";
+            this.PdfCombineButton.Size = new System.Drawing.Size(133, 23);
+            this.PdfCombineButton.TabIndex = 43;
+            this.PdfCombineButton.Text = "Combine PDF";
+            this.PdfCombineButton.UseVisualStyleBackColor = true;
+            this.PdfCombineButton.Click += this.PdfCombiner.Launch;
+            // 
+            // themeSwitch
+            // 
+            this.themeSwitch.Appearance = System.Windows.Forms.Appearance.Button;
+            this.themeSwitch.AutoSize = true;
+            this.themeSwitch.BackColor = System.Drawing.Color.White;
+            this.themeSwitch.FlatAppearance.BorderSize = 0;
+            this.themeSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.themeSwitch.Location = new System.Drawing.Point(16, 13);
+            this.themeSwitch.MinimumSize = new System.Drawing.Size(30, 15);
+            this.themeSwitch.Name = "themeSwitch";
+            this.themeSwitch.Size = new System.Drawing.Size(53, 23);
+            this.themeSwitch.TabIndex = 17;
+            this.themeSwitch.Text = "switch1";
+            this.themeSwitch.UseVisualStyleBackColor = false;
+            // 
+            // resetFiles
+            // 
+            this.resetFiles.Location = new System.Drawing.Point(294, 273);
+            this.resetFiles.Name = "resetFiles";
+            this.resetFiles.Size = new System.Drawing.Size(133, 23);
+            this.resetFiles.TabIndex = 46;
+            this.resetFiles.Text = "Reset";
+            this.resetFiles.UseVisualStyleBackColor = true;
+            this.resetFiles.Click += new System.EventHandler(this.PdfCombiner.ResetFiles);
+            // 
             // DopplerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -799,6 +875,7 @@ namespace Doppler
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -828,6 +905,9 @@ namespace Doppler
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.TabPage tabPage1;
         public System.Windows.Forms.TabPage tabPage2;
+        public System.Windows.Forms.TabPage tabPage3;
+        public System.Windows.Forms.TabPage tabPage4;
+        public System.Windows.Forms.TabPage tabPage5;
         public System.Windows.Forms.Label label8;
         public System.Windows.Forms.TextBox textBoxSourceFile2;
         public System.Windows.Forms.TextBox textBoxDestinationFolder2;
@@ -849,8 +929,6 @@ namespace Doppler
         public System.Windows.Forms.Label label10;
         public System.Windows.Forms.Label label11;
         public Switch themeSwitch;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
         public System.Windows.Forms.Button Mp3ConvertButton;
         public System.Windows.Forms.Button ffmpegButton3;
         public System.Windows.Forms.TextBox textBoxFfmpegPath3;
@@ -878,6 +956,9 @@ namespace Doppler
         public System.Windows.Forms.Button sourceVideoButton3;
         public System.Windows.Forms.TextBox textBoxSourceFile4;
         public System.Windows.Forms.Label label17;
+        public System.Windows.Forms.Button PdfCombineButton;
+        public System.Windows.Forms.FlowLayoutPanel flowLayoutFiles;
+        public System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.Button resetFiles;
     }
 }
-
