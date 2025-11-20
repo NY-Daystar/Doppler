@@ -51,8 +51,11 @@ namespace Doppler
                 Layout = layout
             };
 
+            ConsoleTarget console = new ConsoleTarget();
+
             // Rules for mapping loggers to targets            
             config.AddRule(LogLevel.Trace, LogLevel.Fatal, logfile);
+            config.AddRule(LogLevel.Trace, LogLevel.Fatal, console);
 
             // Apply config           
             LogManager.Configuration = config;

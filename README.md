@@ -13,6 +13,7 @@ C# Windows Form project to
 -   truncate video with start and end time
 -   convert any audio format to mp3
 -   concatenate two videos
+-   combine pdf files
 
 ![User interface](./Docs/UI.png)
 
@@ -22,13 +23,12 @@ C# Windows Form project to
 
 ![User interface tab4](./Docs/UI-tab4.png)
 
-**Version: v1.3.1**
+**Version: v1.4.0**
 
 ## Summary
 
 -   [Requirements](#requirements)
--   [How to use](#how-to-use)
--   [Setup project](#setup-project)
+-   [Get started](#get-started)
 -   [Contact](#contact)
 -   [Credits](#credits)
 
@@ -37,9 +37,9 @@ C# Windows Form project to
 -   [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) >= 7.0
 -   For developpment: [VS 2022](https://visualstudio.microsoft.com/fr/vs/) >= 2022
 
-## How to use
+## Get started
 
-1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.3.1/Doppler-portable-v1.3.1V.zip)
+1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.4.0/Doppler-portable-v1.4.0.zip)
 
 2. Extract zip on your computer
 
@@ -51,21 +51,6 @@ C# Windows Form project to
 
 4. You will need to download FFMPEG from this link https://www.gyan.dev/ffmpeg/builds/#release-builds  
    or download now with this link : https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
-
-## Setup project
-
-1. Clone repository
-
-```bash
-$ git clone git@github.com:NY-Daystar/Doppler.git
-```
-
-2. Open VS 2022 -> `Open project or solution`
-3. Select `Doppler.sln`
-4. Rebuild solution
-5. F5 to launch project in Debug mode
-6. You will need to compile in 32/64bits
-    > [MSI build with this tutorial](https://gaby277.developpez.com/Tutoriels/VisualStudioInstallerProject/)
 
 ## Contact
 
