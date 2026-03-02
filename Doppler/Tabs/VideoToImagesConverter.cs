@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Doppler.Tabs
 {
-    public class ImageConverter : ITab
+    public class VideoToImagesConverter : ITab
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -14,33 +14,49 @@ namespace Doppler.Tabs
         private readonly FileManager FileManager;
 
         private TextBox SourceFile, DestinationFolder, PathFfmpeg;
-        private Button SourceButton, DestinationButton, FfMpegButton;
+        private Button SourceButton, DestinationButton, FfMpegButton, ConverterButton;
 
-        public ImageConverter(DopplerConfig config, FileManager fileManager)
+        public VideoToImagesConverter(DopplerConfig config, FileManager fileManager)
         {
             Config = config;
             FileManager = fileManager;
         }
 
-        public void AttachComponents(DopplerForm application)
+        public void AttachComponents(TabPage tab)
         {
-            SourceFile = application.textBoxSourceFile;
-            DestinationFolder = application.textBoxDestinationFolder;
-            PathFfmpeg = application.textBoxFfmpegPath;
-
-            SourceButton = application.sourceVideoButton;
-            DestinationButton = application.destinationFolderButton;
-            FfMpegButton = application.ffmpegButton;
-
+            if (tab.Controls["textBoxSourceFile"] is TextBox tb)
+                SourceFile = tb;
             SourceFile.Text = Config.SourcePath;
+
+            if (tab.Controls["textBoxDestinationFolder"] is TextBox tb2)
+                DestinationFolder = tb2;
             DestinationFolder.Text = Config.DestinationFolderPath;
+
+            if (tab.Controls["textBoxFfmpegPath"] is TextBox tb3)
+                PathFfmpeg = tb3;
             PathFfmpeg.Text = Config.FfmpegPath;
+            
+            if (tab.Controls["sourceVideoButton"] is Button btn)
+                SourceButton = btn;
+            SourceButton.Click += DefinePath;
+            
+            if (tab.Controls["destinationFolderButton"] is Button btn2)
+                DestinationButton = btn2;
+            DestinationButton.Click += DefinePath;
+            
+            if (tab.Controls["ffmpegButton"] is Button btn3)
+                FfMpegButton = btn3;
+            FfMpegButton.Click += DefinePath;
+
+            if (tab.Controls["ConvertImageButton"] is Button btn4)
+                ConverterButton = btn4;
+            ConverterButton.Click += Launch;
         }
 
         /// <summary>
         /// Build and launch FFMPEG command to generate images
         /// </summary>
-        public void Launch(object sender, EventArgs e)
+        private void Launch(object sender, EventArgs e)
         {
             Logger.Info("Launch image Converter");
 
@@ -61,7 +77,7 @@ namespace Doppler.Tabs
             Process.Start("explorer.exe", Config.DestinationFolderPath);
         }
 
-        public void DefinePath(object sender, EventArgs e)
+        private void DefinePath(object sender, EventArgs e)
         {
             // To select source file
             if (sender == SourceButton)

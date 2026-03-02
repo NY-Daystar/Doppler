@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Doppler
 {
-    public partial class DopplerForm : Form
+    public partial class DopplerView : Form
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -17,17 +17,22 @@ namespace Doppler
         private readonly DopplerConfig Config;
 
         /// <summary>
-        /// Tabs List functionalities
+        /// Manager
         /// </summary>
-        private VideoTruncater Truncater;
-        private ImageConverter Converter;
         private FileManager FileManager;
         private ThemeManager ThemeManager;
+
+        /// <summary>
+        /// Tabs List functionalities
+        /// </summary>
+        private ImageToPdfConverter ImageToPdfConverter;
+        private PdfCombiner PdfCombiner;
         private Mp3Converter Mp3Converter;
         private VideoMerger VideoMerger;
-        private PdfCombiner PdfCombiner;
+        private VideoToImagesConverter VideoToImagesConverter;
+        private VideoTruncater VideoTruncater;
 
-        public DopplerForm()
+        public DopplerView()
         {
             Logger.Debug("Load Configuration");
             Config = DopplerConfig.Get();
@@ -50,12 +55,13 @@ namespace Doppler
         private void SetupComponents()
         {
             FileManager = new FileManager();
-            ThemeManager = new ThemeManager(Config);
-            Converter = new ImageConverter(Config, FileManager);
-            Truncater = new VideoTruncater(Config, FileManager);
+            ThemeManager = new ThemeManager(this, Config);
+            VideoToImagesConverter = new VideoToImagesConverter(Config, FileManager);
+            VideoTruncater = new VideoTruncater(Config, FileManager);
             Mp3Converter = new Mp3Converter(Config, FileManager);
             VideoMerger = new VideoMerger(Config, FileManager);
             PdfCombiner = new PdfCombiner(Config, FileManager);
+            ImageToPdfConverter = new ImageToPdfConverter(Config, FileManager);
         }
 
         /// <summary>
@@ -65,12 +71,13 @@ namespace Doppler
         {
             versionLabel.Text = $"Version: v{Constants.VERSION}";
             FileManager.AttachComponents(this);
-            ThemeManager.AttachComponents(this);
-            Converter.AttachComponents(this);
-            Truncater.AttachComponents(this);
-            Mp3Converter.AttachComponents(this);
-            VideoMerger.AttachComponents(this);
-            PdfCombiner.AttachComponents(this);
+            ThemeManager.AttachComponents();
+            VideoToImagesConverter.AttachComponents(tabVideoToImage);
+            VideoTruncater.AttachComponents(tabTruncateVideo);
+            Mp3Converter.AttachComponents(tabConvertMp3);
+            VideoMerger.AttachComponents(tabMergeVideos);
+            PdfCombiner.AttachComponents(tabPdfCombine);
+            ImageToPdfConverter.AttachComponents(tabImageToPdf);
         }
 
         private void RedirectToDownload(object sender, EventArgs e)
@@ -84,7 +91,7 @@ namespace Doppler
                 if (noBrowser.ErrorCode == -2_147_467_259)
                     MessageBox.Show(noBrowser.Message);
             }
-            catch (System.Exception other)
+            catch (Exception other)
             {
                 MessageBox.Show(other.Message);
             }
@@ -110,6 +117,11 @@ namespace Doppler
         private void GoToGithub(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(Constants.GITHUB_LINK);
+        }
+
+        private void ThemeSwitch_Click(object sender, EventArgs e)
+        {
+            ThemeManager?.Switch(sender, e);
         }
     }
 }
