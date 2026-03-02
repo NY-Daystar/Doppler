@@ -7,34 +7,32 @@ namespace Doppler.Utils
     public class ThemeManager
     {
         DopplerTheme Theme { get; set; }
-        private DopplerConfig Config { get; }
+        private readonly DopplerConfig Config;
 
-        private DopplerForm Application;
+        private readonly DopplerView Application;
 
-        public ThemeManager(DopplerConfig config)
-        {
-            Config = config;
-            Theme = config.Theme;
-        }
-
-        public void AttachComponents(DopplerForm application)
+        public ThemeManager(DopplerView application, DopplerConfig config)
         {
             Application = application;
+            Config = config;
+        }
+
+        public void AttachComponents()
+        {
             Application.themeSwitch.Checked = Convert.ToBoolean(Config.Theme);
             ApplyTheme();
         }
 
-        public void ChangeTheme(object sender, EventArgs e)
+        public void Switch(object sender, EventArgs e)
         {
-            Theme = ((CheckBox)sender).Checked ? DopplerTheme.DARK : DopplerTheme.LIGHT;
-            Config.Theme = Theme;
+            Config.Theme = ((CheckBox)sender).Checked ? DopplerTheme.DARK : DopplerTheme.LIGHT;
             Config.Save();
             ApplyTheme();
         }
 
         private void ApplyTheme()
         {
-            if (Theme == DopplerTheme.DARK)
+            if (Config.Theme == DopplerTheme.DARK)
             {
                 Application.BackColor = Color.FromArgb(45, 45, 48); // Dark color
                 Application.ForeColor = Color.White;

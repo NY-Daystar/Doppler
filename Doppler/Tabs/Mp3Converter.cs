@@ -15,7 +15,7 @@ namespace Doppler.Tabs
         private readonly FileManager FileManager;
 
         private TextBox SourceFile, DestinationFolder, PathFfmpeg;
-        private Button SourceButton, DestinationButton, FfMpegButton;
+        private Button SourceButton, DestinationButton, FfMpegButton, ConverterButton;
 
         public Mp3Converter(DopplerConfig config, FileManager fileManager)
         {
@@ -23,22 +23,38 @@ namespace Doppler.Tabs
             FileManager = fileManager;
         }
 
-        public void AttachComponents(DopplerForm application)
+        public void AttachComponents(TabPage tab)
         {
-            SourceFile = application.textBoxSourceFile3;
-            DestinationFolder = application.textBoxDestinationFolder3;
-            PathFfmpeg = application.textBoxFfmpegPath3;
-
-            SourceButton = application.sourceMusicButton;
-            DestinationButton = application.destinationFolderButton3;
-            FfMpegButton = application.ffmpegButton3;
-
+            if (tab.Controls["textBoxSourceFile3"] is TextBox tb)
+                SourceFile = tb;
             SourceFile.Text = Config.SourcePath;
+
+            if (tab.Controls["textBoxDestinationFolder3"] is TextBox tb2)
+                DestinationFolder = tb2;
             DestinationFolder.Text = Config.DestinationFolderPath;
+
+            if (tab.Controls["textBoxFfmpegPath3"] is TextBox tb3)
+                PathFfmpeg = tb3;
             PathFfmpeg.Text = Config.FfmpegPath;
+
+            if (tab.Controls["sourceMusicButton"] is Button btn)
+                SourceButton = btn;
+            SourceButton.Click += DefinePath;
+
+            if (tab.Controls["destinationFolderButton3"] is Button btn2)
+                DestinationButton = btn2;
+            DestinationButton.Click += DefinePath;
+
+            if (tab.Controls["ffmpegButton3"] is Button btn3)
+                FfMpegButton = btn3;
+            FfMpegButton.Click += DefinePath;
+
+            if (tab.Controls["Mp3ConvertButton"] is Button btn4)
+                ConverterButton = btn4;
+            ConverterButton.Click += Launch;
         }
 
-        public void Launch(object sender, EventArgs e)
+        private void Launch(object sender, EventArgs e)
         {
             Logger.Info("Launch Mp3 Converter");
             string argsCmd = $"-i \"{Config.SourcePath}\" -codec:a libmp3lame -qscale:a 2 \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}.mp3\"";
@@ -58,7 +74,7 @@ namespace Doppler.Tabs
             Process.Start("explorer.exe", Config.DestinationFolderPath);
         }
 
-        public void DefinePath(object sender, EventArgs e)
+        private void DefinePath(object sender, EventArgs e)
         {
             // To select source file
             if (sender == SourceButton)

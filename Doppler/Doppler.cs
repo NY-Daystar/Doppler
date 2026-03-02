@@ -30,7 +30,7 @@ namespace Doppler
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DopplerForm());
+            Application.Run(new DopplerView());
         }
 
         /// <summary>

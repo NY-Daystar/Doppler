@@ -1,7 +1,7 @@
 ﻿using Doppler.Utils;
 using NLog;
+using PdfSharp.Drawing;
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Doppler.Tabs
 {
-    public class PdfCombiner : ITab
+    public class ImageToPdfConverter : ITab
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -18,13 +18,11 @@ namespace Doppler.Tabs
 
         private FlowLayoutPanel FlowLayoutFiles;
         private ProgressBar ProgressBar;
-        private Button ResetButton, CombinerButton;
+        private Button ResetButton, ConverterButton;
 
         private List<DopplerFile> Files = new List<DopplerFile> { };
 
-        private static string MergeFileName = "combinepdf";  
-
-        public PdfCombiner(DopplerConfig config, FileManager fileManager)
+        public ImageToPdfConverter(DopplerConfig config, FileManager fileManager)
         {
             Config = config;
             FileManager = fileManager;
@@ -32,21 +30,21 @@ namespace Doppler.Tabs
 
         public void AttachComponents(TabPage tab)
         {
-            if (tab.Controls["flowLayoutFiles"] is FlowLayoutPanel flp)
+            if (tab.Controls["flowLayoutFiles2"] is FlowLayoutPanel flp)
                 FlowLayoutFiles = flp;
             FlowLayoutFiles.DragDrop += HandleDragDrop;
             FlowLayoutFiles.DragEnter += HandleDragEnter;
             
-            if (tab.Controls["progressBar1"] is ProgressBar pn)
+            if (tab.Controls["progressBar2"] is ProgressBar pn)
                 ProgressBar = pn;
 
-            if (tab.Controls["resetFiles"] is Button btn)
+            if (tab.Controls["resetFiles2"] is Button btn)
                 ResetButton = btn;
             ResetButton.Click += ResetFiles;
 
-            if (tab.Controls["PdfCombineButton"] is Button btn2)
-                CombinerButton = btn2;
-            CombinerButton.Click += Launch;
+            if (tab.Controls["ImageToPdfButton"] is Button btn2)
+                ConverterButton = btn2;
+            ConverterButton.Click += Launch;
         }
 
         /// <summary>
@@ -54,46 +52,39 @@ namespace Doppler.Tabs
         /// </summary>
         private void Launch(object sender, EventArgs e)
         {
-            Logger.Info("Combine PDF");
+            Logger.Info("Convert images to PDF");
             if (Files.Count == 0)
             {
-                MessageBox.Show("No file to merge");
+                MessageBox.Show("No file to convert");
                 return;
             }
-
             var sfd = new SaveFileDialog()
             {
                 Filter = "PDF (*.pdf)|*.pdf",
-                FileName = $"{MergeFileName}.pdf"
+                FileName = $"sample.pdf"
             };
 
             if (sfd.ShowDialog() != DialogResult.OK)
                 return;
+
+            var path = new FileInfo(sfd.FileName).Directory.FullName;
 
             try
             {
                 ProgressBar.Value = 0;
                 ProgressBar.Visible = true;
 
-                var output = new PdfDocument();
-
+                // Convert to PDF and delete image
                 for (int i = 0; i < Files.Count; i++)
                 {
-                    PdfDocument input = PdfReader.Open(Files[i].Path, PdfDocumentOpenMode.Import);
-
-                    for (int p = 0; p < input.PageCount; p++)
-                    {
-                        output.AddPage(input.Pages[p]);
-                    }
+                    var name = Path.GetFileNameWithoutExtension(Files[i].Path);
+                    SaveImageAsPdf(Files[i].Path, $"{Path.Combine(path, name)}.pdf");
 
                     ProgressBar.Value = (int)((i + 1) * 100.0 / Files.Count);
                     Application.DoEvents();
                 }
 
-                output.Save(sfd.FileName);
-                output.Close();
-
-                MessageBox.Show("Fusion succesful");
+                MessageBox.Show("Conversion succesful");
                 ResetFiles(null, null);
                 
             }
@@ -105,6 +96,30 @@ namespace Doppler.Tabs
             {
                 ProgressBar.Visible = false;
             }
+        }
+
+        internal void SaveImageAsPdf(string imageFileName, string pdfFileName, int width = 600, bool deleteImage = false)
+        {
+            using (var document = new PdfDocument())
+            {
+                PdfPage page = document.AddPage();
+                using (XImage img = XImage.FromFile(imageFileName))
+                {
+                    // Calculate new height to keep image ratio
+                    var height = (int)(((double)width / (double)img.PixelWidth) * img.PixelHeight);
+
+                    // Change PDF Page size to match image
+                    page.Width = XUnit.FromPoint(width);
+                    page.Height = XUnit.FromPoint(height);
+
+                    XGraphics gfx = XGraphics.FromPdfPage(page);
+                    gfx.DrawImage(img, 0, 0, width, height);
+                }
+                document.Save(pdfFileName);
+            }
+
+            if (deleteImage)
+                File.Delete(imageFileName);
         }
 
         private void ResetFiles(object sender, EventArgs e)

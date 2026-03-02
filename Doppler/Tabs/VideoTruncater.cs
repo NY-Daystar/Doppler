@@ -15,34 +15,56 @@ namespace Doppler.Tabs
         private readonly FileManager FileManager;
 
         private TextBox SourceFile, DestinationFolder, PathFfmpeg, StartTime, EndTime;
-        private Button SourceButton, DestinationButton, FfMpegButton;
+        private Button SourceButton, DestinationButton, FfMpegButton, TruncaterButton;
 
         public VideoTruncater(DopplerConfig config, FileManager fileManager)
         {
             Config = config;
             FileManager = fileManager;
         }
-
-        public void AttachComponents(DopplerForm application)
+        
+        public void AttachComponents(TabPage tab)
         {
-            SourceFile = application.textBoxSourceFile2;
-            DestinationFolder = application.textBoxDestinationFolder2;
-            PathFfmpeg = application.textBoxFfmpegPath2;
-            StartTime = application.startTime;
-            EndTime = application.endTime;
-
-            SourceButton = application.sourceVideoButton2;
-            DestinationButton = application.destinationFolderButton2;
-            FfMpegButton = application.ffmpegButton2;
-
+            if (tab.Controls["textBoxSourceFile2"] is TextBox tb)
+                SourceFile = tb;
             SourceFile.Text = Config.SourcePath;
+
+            if (tab.Controls["textBoxDestinationFolder2"] is TextBox tb2)
+                DestinationFolder = tb2;
             DestinationFolder.Text = Config.DestinationFolderPath;
+
+            if (tab.Controls["textBoxFfmpegPath2"] is TextBox tb3)
+                PathFfmpeg = tb3;
             PathFfmpeg.Text = Config.FfmpegPath;
+
+            if (tab.Controls["startTime"] is TextBox tb4)
+                StartTime = tb4;
             StartTime.Text = Config.StartTime;
-            EndTime.Text = Config.EndTime;
+            StartTime.TextChanged += DefineTime;
+
+            if (tab.Controls["endTime"] is TextBox tb5)
+                EndTime = tb5;
+            EndTime.Text = Config.StartTime;
+            EndTime.TextChanged += DefineTime;
+
+            if (tab.Controls["sourceVideoButton2"] is Button btn)
+                SourceButton = btn;
+            SourceButton.Click += DefinePath;
+
+            if (tab.Controls["destinationFolderButton2"] is Button btn2)
+                DestinationButton = btn2;
+            DestinationButton.Click += DefinePath;
+
+            if (tab.Controls["ffmpegButton2"] is Button btn3)
+                FfMpegButton = btn3;
+            FfMpegButton.Click += DefinePath;
+
+            if (tab.Controls["TruncateVideoButton"] is Button btn5)
+                TruncaterButton = btn5;
+            TruncaterButton.Click += Launch;
         }
 
-        public void Launch(object sender, EventArgs e)
+        private void Launch(object sender, EventArgs e)
         {
             Logger.Info("Launch video truncater");
             string argsCmd = $"-i \"{Config.SourcePath}\" -ss  {Config.StartTime} -to {Config.EndTime} -c copy \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}-{Config.StartTime.Replace(":", "_")}-{Config.EndTime.Replace(":", "_")}.mp4\"";
@@ -62,7 +84,7 @@ namespace Doppler.Tabs
             Process.Start("explorer.exe", Config.DestinationFolderPath);
         }
 
-        public void DefinePath(object sender, EventArgs e)
+        private void DefinePath(object sender, EventArgs e)
         {
             // To select source file
             if (sender == SourceButton)
@@ -90,7 +112,7 @@ namespace Doppler.Tabs
             }
         }
 
-        public void DefineTime(object sender, EventArgs e)
+        private void DefineTime(object sender, EventArgs e)
         {
             if (sender == StartTime)
             {

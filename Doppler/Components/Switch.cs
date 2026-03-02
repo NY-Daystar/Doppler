@@ -2,7 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Doppler.Components
+namespace Doppler
 {
     /// <summary>
     /// Component for winform to create switch button

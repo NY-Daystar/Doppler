@@ -6,7 +6,10 @@ namespace Doppler.Utils
     {
         FileDialog Dialog;
 
-        public void AttachComponents(DopplerForm app)
+        public FileManager()
+        {}
+
+        public void AttachComponents(DopplerView app)
         {
             Dialog = app.fileDialog;
         }

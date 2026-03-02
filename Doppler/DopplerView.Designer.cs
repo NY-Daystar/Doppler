@@ -1,8 +1,8 @@
-﻿using Doppler.Components;
+﻿using Doppler;
 
 namespace Doppler
 {
-    partial class DopplerForm
+    partial class DopplerView
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Doppler
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DopplerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DopplerView));
             this.ConvertImageButton = new System.Windows.Forms.Button();
             this.versionLabel = new System.Windows.Forms.Label();
             this.textBoxSourceFile = new System.Windows.Forms.TextBox();
@@ -51,8 +51,8 @@ namespace Doppler
             this.label6 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabVideoToImage = new System.Windows.Forms.TabPage();
+            this.tabTruncateVideo = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
             this.endTime = new System.Windows.Forms.TextBox();
             this.startTime = new System.Windows.Forms.TextBox();
@@ -70,7 +70,7 @@ namespace Doppler
             this.sourceVideoButton2 = new System.Windows.Forms.Button();
             this.textBoxSourceFile2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabConvertMp3 = new System.Windows.Forms.TabPage();
             this.Mp3ConvertButton = new System.Windows.Forms.Button();
             this.ffmpegButton3 = new System.Windows.Forms.Button();
             this.textBoxFfmpegPath3 = new System.Windows.Forms.TextBox();
@@ -83,7 +83,7 @@ namespace Doppler
             this.sourceMusicButton = new System.Windows.Forms.Button();
             this.textBoxSourceFile3 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabMergeVideos = new System.Windows.Forms.TabPage();
             this.sourceVideoButton4 = new System.Windows.Forms.Button();
             this.textBoxSourceFile5 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -99,19 +99,24 @@ namespace Doppler
             this.sourceVideoButton3 = new System.Windows.Forms.Button();
             this.textBoxSourceFile4 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPdfCombine = new System.Windows.Forms.TabPage();
+            this.resetFiles = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.flowLayoutFiles = new System.Windows.Forms.FlowLayoutPanel();
             this.PdfCombineButton = new System.Windows.Forms.Button();
-            this.resetFiles = new System.Windows.Forms.Button();
             this.themeSwitch = new Switch();
-            
+            this.tabImageToPdf = new System.Windows.Forms.TabPage();
+            this.resetFiles2 = new System.Windows.Forms.Button();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.flowLayoutFiles2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ImageToPdfButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
+            this.tabVideoToImage.SuspendLayout();
+            this.tabTruncateVideo.SuspendLayout();
+            this.tabConvertMp3.SuspendLayout();
+            this.tabMergeVideos.SuspendLayout();
+            this.tabPdfCombine.SuspendLayout();
+            this.tabImageToPdf.SuspendLayout();
             this.SuspendLayout();
             // 
             // ConvertImageButton
@@ -122,7 +127,6 @@ namespace Doppler
             this.ConvertImageButton.TabIndex = 0;
             this.ConvertImageButton.Text = "Convert into images";
             this.ConvertImageButton.UseVisualStyleBackColor = true;
-            this.ConvertImageButton.Click += this.Converter.Launch;
             // 
             // versionLabel
             // 
@@ -180,7 +184,6 @@ namespace Doppler
             this.sourceVideoButton.TabIndex = 6;
             this.sourceVideoButton.Text = "Choose";
             this.sourceVideoButton.UseVisualStyleBackColor = true;
-            this.sourceVideoButton.Click += this.Converter.DefinePath;
             // 
             // destinationFolderButton
             // 
@@ -190,7 +193,6 @@ namespace Doppler
             this.destinationFolderButton.TabIndex = 7;
             this.destinationFolderButton.Text = "Choose";
             this.destinationFolderButton.UseVisualStyleBackColor = true;
-            this.destinationFolderButton.Click += this.Converter.DefinePath;
             // 
             // ffmpegButton
             // 
@@ -200,7 +202,6 @@ namespace Doppler
             this.ffmpegButton.TabIndex = 11;
             this.ffmpegButton.Text = "Choose";
             this.ffmpegButton.UseVisualStyleBackColor = true;
-            this.ffmpegButton.Click += this.Converter.DefinePath;
             // 
             // label4
             // 
@@ -265,66 +266,67 @@ namespace Doppler
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabVideoToImage);
+            this.tabControl1.Controls.Add(this.tabTruncateVideo);
+            this.tabControl1.Controls.Add(this.tabConvertMp3);
+            this.tabControl1.Controls.Add(this.tabMergeVideos);
+            this.tabControl1.Controls.Add(this.tabPdfCombine);
+            this.tabControl1.Controls.Add(this.tabImageToPdf);
             this.tabControl1.Location = new System.Drawing.Point(12, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(770, 395);
             this.tabControl1.TabIndex = 16;
             // 
-            // tabPage1
+            // tabVideoToImage
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.textBoxSourceFile);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.sourceVideoButton);
-            this.tabPage1.Controls.Add(this.textBoxFfmpegPath);
-            this.tabPage1.Controls.Add(this.ffmpegButton);
-            this.tabPage1.Controls.Add(this.ConvertImageButton);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.textBoxDestinationFolder);
-            this.tabPage1.Controls.Add(this.destinationFolderButton);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(762, 369);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "VideoToImages";
+            this.tabVideoToImage.BackColor = System.Drawing.SystemColors.Control;
+            this.tabVideoToImage.Controls.Add(this.textBoxSourceFile);
+            this.tabVideoToImage.Controls.Add(this.label2);
+            this.tabVideoToImage.Controls.Add(this.label6);
+            this.tabVideoToImage.Controls.Add(this.sourceVideoButton);
+            this.tabVideoToImage.Controls.Add(this.textBoxFfmpegPath);
+            this.tabVideoToImage.Controls.Add(this.ffmpegButton);
+            this.tabVideoToImage.Controls.Add(this.ConvertImageButton);
+            this.tabVideoToImage.Controls.Add(this.button5);
+            this.tabVideoToImage.Controls.Add(this.label5);
+            this.tabVideoToImage.Controls.Add(this.button4);
+            this.tabVideoToImage.Controls.Add(this.textBoxDestinationFolder);
+            this.tabVideoToImage.Controls.Add(this.destinationFolderButton);
+            this.tabVideoToImage.Controls.Add(this.label3);
+            this.tabVideoToImage.Location = new System.Drawing.Point(4, 22);
+            this.tabVideoToImage.Name = "tabVideoToImage";
+            this.tabVideoToImage.Padding = new System.Windows.Forms.Padding(3);
+            this.tabVideoToImage.Size = new System.Drawing.Size(762, 369);
+            this.tabVideoToImage.TabIndex = 0;
+            this.tabVideoToImage.Text = "VideoToImages";
             // 
-            // tabPage2
+            // tabTruncateVideo
             // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.endTime);
-            this.tabPage2.Controls.Add(this.startTime);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.TruncateVideoButton);
-            this.tabPage2.Controls.Add(this.ffmpegButton2);
-            this.tabPage2.Controls.Add(this.textBoxFfmpegPath2);
-            this.tabPage2.Controls.Add(this.button9);
-            this.tabPage2.Controls.Add(this.button8);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.destinationFolderButton2);
-            this.tabPage2.Controls.Add(this.textBoxDestinationFolder2);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.sourceVideoButton2);
-            this.tabPage2.Controls.Add(this.textBoxSourceFile2);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(762, 369);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "TruncateVideo";
+            this.tabTruncateVideo.BackColor = System.Drawing.SystemColors.Control;
+            this.tabTruncateVideo.Controls.Add(this.label11);
+            this.tabTruncateVideo.Controls.Add(this.endTime);
+            this.tabTruncateVideo.Controls.Add(this.startTime);
+            this.tabTruncateVideo.Controls.Add(this.label10);
+            this.tabTruncateVideo.Controls.Add(this.label1);
+            this.tabTruncateVideo.Controls.Add(this.TruncateVideoButton);
+            this.tabTruncateVideo.Controls.Add(this.ffmpegButton2);
+            this.tabTruncateVideo.Controls.Add(this.textBoxFfmpegPath2);
+            this.tabTruncateVideo.Controls.Add(this.button9);
+            this.tabTruncateVideo.Controls.Add(this.button8);
+            this.tabTruncateVideo.Controls.Add(this.label9);
+            this.tabTruncateVideo.Controls.Add(this.destinationFolderButton2);
+            this.tabTruncateVideo.Controls.Add(this.textBoxDestinationFolder2);
+            this.tabTruncateVideo.Controls.Add(this.label8);
+            this.tabTruncateVideo.Controls.Add(this.sourceVideoButton2);
+            this.tabTruncateVideo.Controls.Add(this.textBoxSourceFile2);
+            this.tabTruncateVideo.Controls.Add(this.label7);
+            this.tabTruncateVideo.Location = new System.Drawing.Point(4, 22);
+            this.tabTruncateVideo.Name = "tabTruncateVideo";
+            this.tabTruncateVideo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTruncateVideo.Size = new System.Drawing.Size(762, 369);
+            this.tabTruncateVideo.TabIndex = 1;
+            this.tabTruncateVideo.Text = "TruncateVideo";
             // 
             // label11
             // 
@@ -342,7 +344,6 @@ namespace Doppler
             this.endTime.Name = "endTime";
             this.endTime.Size = new System.Drawing.Size(110, 20);
             this.endTime.TabIndex = 22;
-            this.endTime.TextChanged += this.Truncater.DefineTime;
             // 
             // startTime
             // 
@@ -350,7 +351,6 @@ namespace Doppler
             this.startTime.Name = "startTime";
             this.startTime.Size = new System.Drawing.Size(117, 20);
             this.startTime.TabIndex = 21;
-            this.startTime.TextChanged += this.Truncater.DefineTime;
             // 
             // label10
             // 
@@ -378,7 +378,6 @@ namespace Doppler
             this.TruncateVideoButton.TabIndex = 18;
             this.TruncateVideoButton.Text = "Truncate the video";
             this.TruncateVideoButton.UseVisualStyleBackColor = true;
-            this.TruncateVideoButton.Click += this.Truncater.Launch;
             // 
             // ffmpegButton2
             // 
@@ -388,7 +387,6 @@ namespace Doppler
             this.ffmpegButton2.TabIndex = 17;
             this.ffmpegButton2.Text = "Choose";
             this.ffmpegButton2.UseVisualStyleBackColor = true;
-            this.ffmpegButton2.Click += this.Truncater.DefinePath;
             // 
             // textBoxFfmpegPath2
             // 
@@ -435,7 +433,6 @@ namespace Doppler
             this.destinationFolderButton2.TabIndex = 12;
             this.destinationFolderButton2.Text = "Choose";
             this.destinationFolderButton2.UseVisualStyleBackColor = true;
-            this.destinationFolderButton2.Click += this.Truncater.DefinePath;
             // 
             // textBoxDestinationFolder2
             // 
@@ -461,7 +458,6 @@ namespace Doppler
             this.sourceVideoButton2.TabIndex = 7;
             this.sourceVideoButton2.Text = "Choose";
             this.sourceVideoButton2.UseVisualStyleBackColor = true;
-            this.sourceVideoButton2.Click += this.Truncater.DefinePath;
             // 
             // textBoxSourceFile2
             // 
@@ -479,27 +475,27 @@ namespace Doppler
             this.label7.TabIndex = 5;
             this.label7.Text = "Choose a video";
             // 
-            // tabPage3
+            // tabConvertMp3
             // 
-            this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage3.Controls.Add(this.Mp3ConvertButton);
-            this.tabPage3.Controls.Add(this.ffmpegButton3);
-            this.tabPage3.Controls.Add(this.textBoxFfmpegPath3);
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.button6);
-            this.tabPage3.Controls.Add(this.label12);
-            this.tabPage3.Controls.Add(this.destinationFolderButton3);
-            this.tabPage3.Controls.Add(this.textBoxDestinationFolder3);
-            this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.sourceMusicButton);
-            this.tabPage3.Controls.Add(this.textBoxSourceFile3);
-            this.tabPage3.Controls.Add(this.label14);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(762, 369);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "ConvertMp3";
+            this.tabConvertMp3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabConvertMp3.Controls.Add(this.Mp3ConvertButton);
+            this.tabConvertMp3.Controls.Add(this.ffmpegButton3);
+            this.tabConvertMp3.Controls.Add(this.textBoxFfmpegPath3);
+            this.tabConvertMp3.Controls.Add(this.button3);
+            this.tabConvertMp3.Controls.Add(this.button6);
+            this.tabConvertMp3.Controls.Add(this.label12);
+            this.tabConvertMp3.Controls.Add(this.destinationFolderButton3);
+            this.tabConvertMp3.Controls.Add(this.textBoxDestinationFolder3);
+            this.tabConvertMp3.Controls.Add(this.label13);
+            this.tabConvertMp3.Controls.Add(this.sourceMusicButton);
+            this.tabConvertMp3.Controls.Add(this.textBoxSourceFile3);
+            this.tabConvertMp3.Controls.Add(this.label14);
+            this.tabConvertMp3.Location = new System.Drawing.Point(4, 22);
+            this.tabConvertMp3.Name = "tabConvertMp3";
+            this.tabConvertMp3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabConvertMp3.Size = new System.Drawing.Size(762, 369);
+            this.tabConvertMp3.TabIndex = 2;
+            this.tabConvertMp3.Text = "ConvertMp3";
             // 
             // Mp3ConvertButton
             // 
@@ -509,7 +505,6 @@ namespace Doppler
             this.Mp3ConvertButton.TabIndex = 30;
             this.Mp3ConvertButton.Text = "Convert to MP3";
             this.Mp3ConvertButton.UseVisualStyleBackColor = true;
-            this.Mp3ConvertButton.Click += this.Mp3Converter.Launch;
             // 
             // ffmpegButton3
             // 
@@ -519,7 +514,6 @@ namespace Doppler
             this.ffmpegButton3.TabIndex = 29;
             this.ffmpegButton3.Text = "Choose";
             this.ffmpegButton3.UseVisualStyleBackColor = true;
-            this.ffmpegButton3.Click += this.Mp3Converter.DefinePath;
             // 
             // textBoxFfmpegPath3
             // 
@@ -566,7 +560,6 @@ namespace Doppler
             this.destinationFolderButton3.TabIndex = 24;
             this.destinationFolderButton3.Text = "Choose";
             this.destinationFolderButton3.UseVisualStyleBackColor = true;
-            this.destinationFolderButton3.Click += this.Mp3Converter.DefinePath;
             // 
             // textBoxDestinationFolder3
             // 
@@ -592,7 +585,6 @@ namespace Doppler
             this.sourceMusicButton.TabIndex = 21;
             this.sourceMusicButton.Text = "Choose";
             this.sourceMusicButton.UseVisualStyleBackColor = true;
-            this.sourceMusicButton.Click += this.Mp3Converter.DefinePath;
             // 
             // textBoxSourceFile3
             // 
@@ -610,30 +602,30 @@ namespace Doppler
             this.label14.TabIndex = 19;
             this.label14.Text = "Choose a music (mp4, ogg, m4a, etc...)";
             // 
-            // tabPage4
+            // tabMergeVideos
             // 
-            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage4.Controls.Add(this.sourceVideoButton4);
-            this.tabPage4.Controls.Add(this.textBoxSourceFile5);
-            this.tabPage4.Controls.Add(this.label18);
-            this.tabPage4.Controls.Add(this.MergeVideoButton);
-            this.tabPage4.Controls.Add(this.ffmpegButton4);
-            this.tabPage4.Controls.Add(this.textBoxFfmpegPath4);
-            this.tabPage4.Controls.Add(this.button7);
-            this.tabPage4.Controls.Add(this.button10);
-            this.tabPage4.Controls.Add(this.label15);
-            this.tabPage4.Controls.Add(this.destinationFolderButton4);
-            this.tabPage4.Controls.Add(this.textBoxDestinationFolder4);
-            this.tabPage4.Controls.Add(this.label16);
-            this.tabPage4.Controls.Add(this.sourceVideoButton3);
-            this.tabPage4.Controls.Add(this.textBoxSourceFile4);
-            this.tabPage4.Controls.Add(this.label17);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(762, 369);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "MergeVideos";
+            this.tabMergeVideos.BackColor = System.Drawing.SystemColors.Control;
+            this.tabMergeVideos.Controls.Add(this.sourceVideoButton4);
+            this.tabMergeVideos.Controls.Add(this.textBoxSourceFile5);
+            this.tabMergeVideos.Controls.Add(this.label18);
+            this.tabMergeVideos.Controls.Add(this.MergeVideoButton);
+            this.tabMergeVideos.Controls.Add(this.ffmpegButton4);
+            this.tabMergeVideos.Controls.Add(this.textBoxFfmpegPath4);
+            this.tabMergeVideos.Controls.Add(this.button7);
+            this.tabMergeVideos.Controls.Add(this.button10);
+            this.tabMergeVideos.Controls.Add(this.label15);
+            this.tabMergeVideos.Controls.Add(this.destinationFolderButton4);
+            this.tabMergeVideos.Controls.Add(this.textBoxDestinationFolder4);
+            this.tabMergeVideos.Controls.Add(this.label16);
+            this.tabMergeVideos.Controls.Add(this.sourceVideoButton3);
+            this.tabMergeVideos.Controls.Add(this.textBoxSourceFile4);
+            this.tabMergeVideos.Controls.Add(this.label17);
+            this.tabMergeVideos.Location = new System.Drawing.Point(4, 22);
+            this.tabMergeVideos.Name = "tabMergeVideos";
+            this.tabMergeVideos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMergeVideos.Size = new System.Drawing.Size(762, 369);
+            this.tabMergeVideos.TabIndex = 3;
+            this.tabMergeVideos.Text = "MergeVideos";
             // 
             // sourceVideoButton4
             // 
@@ -643,7 +635,6 @@ namespace Doppler
             this.sourceVideoButton4.TabIndex = 45;
             this.sourceVideoButton4.Text = "Choose";
             this.sourceVideoButton4.UseVisualStyleBackColor = true;
-            this.sourceVideoButton4.Click += this.VideoMerger.DefinePath;
             // 
             // textBoxSourceFile5
             // 
@@ -669,7 +660,6 @@ namespace Doppler
             this.MergeVideoButton.TabIndex = 42;
             this.MergeVideoButton.Text = "Merge videos";
             this.MergeVideoButton.UseVisualStyleBackColor = true;
-            this.MergeVideoButton.Click += this.VideoMerger.Launch;
             // 
             // ffmpegButton4
             // 
@@ -679,7 +669,6 @@ namespace Doppler
             this.ffmpegButton4.TabIndex = 41;
             this.ffmpegButton4.Text = "Choose";
             this.ffmpegButton4.UseVisualStyleBackColor = true;
-            this.ffmpegButton4.Click += this.VideoMerger.DefinePath;
             // 
             // textBoxFfmpegPath4
             // 
@@ -726,7 +715,6 @@ namespace Doppler
             this.destinationFolderButton4.TabIndex = 36;
             this.destinationFolderButton4.Text = "Choose";
             this.destinationFolderButton4.UseVisualStyleBackColor = true;
-            this.destinationFolderButton4.Click += this.VideoMerger.DefinePath;
             // 
             // textBoxDestinationFolder4
             // 
@@ -752,7 +740,6 @@ namespace Doppler
             this.sourceVideoButton3.TabIndex = 33;
             this.sourceVideoButton3.Text = "Choose";
             this.sourceVideoButton3.UseVisualStyleBackColor = true;
-            this.sourceVideoButton3.Click += this.VideoMerger.DefinePath;
             // 
             // textBoxSourceFile4
             // 
@@ -770,35 +757,28 @@ namespace Doppler
             this.label17.TabIndex = 31;
             this.label17.Text = "Choose first video";
             // 
-            // themeSwitch
+            // tabPdfCombine
             // 
-            this.themeSwitch.Appearance = System.Windows.Forms.Appearance.Button;
-            this.themeSwitch.AutoSize = true;
-            this.themeSwitch.BackColor = System.Drawing.Color.White;
-            this.themeSwitch.FlatAppearance.BorderSize = 0;
-            this.themeSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.themeSwitch.Location = new System.Drawing.Point(16, 13);
-            this.themeSwitch.MinimumSize = new System.Drawing.Size(30, 15);
-            this.themeSwitch.Name = "themeSwitch";
-            this.themeSwitch.Size = new System.Drawing.Size(53, 23);
-            this.themeSwitch.TabIndex = 17;
-            this.themeSwitch.Text = "switch1";
-            this.themeSwitch.UseVisualStyleBackColor = false;
-            this.themeSwitch.Click += this.ThemeManager.ChangeTheme;
+            this.tabPdfCombine.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPdfCombine.Controls.Add(this.resetFiles);
+            this.tabPdfCombine.Controls.Add(this.progressBar1);
+            this.tabPdfCombine.Controls.Add(this.flowLayoutFiles);
+            this.tabPdfCombine.Controls.Add(this.PdfCombineButton);
+            this.tabPdfCombine.Location = new System.Drawing.Point(4, 22);
+            this.tabPdfCombine.Name = "tabPdfCombine";
+            this.tabPdfCombine.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPdfCombine.Size = new System.Drawing.Size(762, 369);
+            this.tabPdfCombine.TabIndex = 4;
+            this.tabPdfCombine.Text = "PDF Combine";
             // 
-            // tabPage5
+            // resetFiles
             // 
-            this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage5.Controls.Add(this.resetFiles);
-            this.tabPage5.Controls.Add(this.progressBar1);
-            this.tabPage5.Controls.Add(this.flowLayoutFiles);
-            this.tabPage5.Controls.Add(this.PdfCombineButton);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(762, 369);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "PDF Combine";
+            this.resetFiles.Location = new System.Drawing.Point(294, 273);
+            this.resetFiles.Name = "resetFiles";
+            this.resetFiles.Size = new System.Drawing.Size(133, 23);
+            this.resetFiles.TabIndex = 46;
+            this.resetFiles.Text = "Reset";
+            this.resetFiles.UseVisualStyleBackColor = true;
             // 
             // progressBar1
             // 
@@ -816,8 +796,6 @@ namespace Doppler
             this.flowLayoutFiles.Name = "flowLayoutFiles";
             this.flowLayoutFiles.Size = new System.Drawing.Size(453, 155);
             this.flowLayoutFiles.TabIndex = 44;
-            this.flowLayoutFiles.DragDrop += this.PdfCombiner.Panel1_DragDrop;
-            this.flowLayoutFiles.DragEnter += this.PdfCombiner.Panel1_DragEnter;
             // 
             // PdfCombineButton
             // 
@@ -827,7 +805,6 @@ namespace Doppler
             this.PdfCombineButton.TabIndex = 43;
             this.PdfCombineButton.Text = "Combine PDF";
             this.PdfCombineButton.UseVisualStyleBackColor = true;
-            this.PdfCombineButton.Click += this.PdfCombiner.Launch;
             // 
             // themeSwitch
             // 
@@ -843,18 +820,58 @@ namespace Doppler
             this.themeSwitch.TabIndex = 17;
             this.themeSwitch.Text = "switch1";
             this.themeSwitch.UseVisualStyleBackColor = false;
+            this.themeSwitch.Click += ThemeSwitch_Click;
             // 
-            // resetFiles
+            // tabImageToPdf
             // 
-            this.resetFiles.Location = new System.Drawing.Point(294, 273);
-            this.resetFiles.Name = "resetFiles";
-            this.resetFiles.Size = new System.Drawing.Size(133, 23);
-            this.resetFiles.TabIndex = 46;
-            this.resetFiles.Text = "Reset";
-            this.resetFiles.UseVisualStyleBackColor = true;
-            this.resetFiles.Click += new System.EventHandler(this.PdfCombiner.ResetFiles);
+            this.tabImageToPdf.BackColor = System.Drawing.SystemColors.Control;
+            this.tabImageToPdf.Controls.Add(this.resetFiles2);
+            this.tabImageToPdf.Controls.Add(this.progressBar2);
+            this.tabImageToPdf.Controls.Add(this.flowLayoutFiles2);
+            this.tabImageToPdf.Controls.Add(this.ImageToPdfButton);
+            this.tabImageToPdf.Location = new System.Drawing.Point(4, 22);
+            this.tabImageToPdf.Name = "tabImageToPdf";
+            this.tabImageToPdf.Padding = new System.Windows.Forms.Padding(3);
+            this.tabImageToPdf.Size = new System.Drawing.Size(762, 369);
+            this.tabImageToPdf.TabIndex = 5;
+            this.tabImageToPdf.Text = "ImageToPdf";
             // 
-            // DopplerForm
+            // resetFiles2
+            // 
+            this.resetFiles2.Location = new System.Drawing.Point(321, 260);
+            this.resetFiles2.Name = "resetFiles2";
+            this.resetFiles2.Size = new System.Drawing.Size(133, 23);
+            this.resetFiles2.TabIndex = 50;
+            this.resetFiles2.Text = "Reset";
+            this.resetFiles2.UseVisualStyleBackColor = true;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(155, 219);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(453, 23);
+            this.progressBar2.TabIndex = 49;
+            // 
+            // flowLayoutFiles2
+            // 
+            this.flowLayoutFiles2.AllowDrop = true;
+            this.flowLayoutFiles2.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutFiles2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutFiles2.Location = new System.Drawing.Point(155, 38);
+            this.flowLayoutFiles2.Name = "flowLayoutFiles2";
+            this.flowLayoutFiles2.Size = new System.Drawing.Size(453, 155);
+            this.flowLayoutFiles2.TabIndex = 48;
+            // 
+            // ImageToPdfButton
+            // 
+            this.ImageToPdfButton.Location = new System.Drawing.Point(321, 308);
+            this.ImageToPdfButton.Name = "ImageToPdfButton";
+            this.ImageToPdfButton.Size = new System.Drawing.Size(133, 23);
+            this.ImageToPdfButton.TabIndex = 47;
+            this.ImageToPdfButton.Text = "Convert to PDF";
+            this.ImageToPdfButton.UseVisualStyleBackColor = true;
+            // 
+            // DopplerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -865,17 +882,18 @@ namespace Doppler
             this.Controls.Add(this.label4);
             this.Controls.Add(this.versionLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "DopplerForm";
+            this.Name = "DopplerView";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
+            this.tabVideoToImage.ResumeLayout(false);
+            this.tabVideoToImage.PerformLayout();
+            this.tabTruncateVideo.ResumeLayout(false);
+            this.tabTruncateVideo.PerformLayout();
+            this.tabConvertMp3.ResumeLayout(false);
+            this.tabConvertMp3.PerformLayout();
+            this.tabMergeVideos.ResumeLayout(false);
+            this.tabMergeVideos.PerformLayout();
+            this.tabPdfCombine.ResumeLayout(false);
+            this.tabImageToPdf.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -903,11 +921,11 @@ namespace Doppler
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.LinkLabel linkLabel1;
         public System.Windows.Forms.TabControl tabControl1;
-        public System.Windows.Forms.TabPage tabPage1;
-        public System.Windows.Forms.TabPage tabPage2;
-        public System.Windows.Forms.TabPage tabPage3;
-        public System.Windows.Forms.TabPage tabPage4;
-        public System.Windows.Forms.TabPage tabPage5;
+        public System.Windows.Forms.TabPage tabVideoToImage;
+        public System.Windows.Forms.TabPage tabTruncateVideo;
+        public System.Windows.Forms.TabPage tabConvertMp3;
+        public System.Windows.Forms.TabPage tabMergeVideos;
+        public System.Windows.Forms.TabPage tabPdfCombine;
         public System.Windows.Forms.Label label8;
         public System.Windows.Forms.TextBox textBoxSourceFile2;
         public System.Windows.Forms.TextBox textBoxDestinationFolder2;
@@ -960,5 +978,10 @@ namespace Doppler
         public System.Windows.Forms.FlowLayoutPanel flowLayoutFiles;
         public System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.Button resetFiles;
+        private System.Windows.Forms.TabPage tabImageToPdf;
+        public System.Windows.Forms.Button resetFiles2;
+        public System.Windows.Forms.ProgressBar progressBar2;
+        public System.Windows.Forms.FlowLayoutPanel flowLayoutFiles2;
+        public System.Windows.Forms.Button ImageToPdfButton;
     }
 }
