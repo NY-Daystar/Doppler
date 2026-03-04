@@ -19,21 +19,21 @@
 
 This application can
 
-- screen captures periodically from video
+- screen captures periodically from video  
   <img style="text-align: center;" alt="Tab 1" src="./Docs/UI.png" width="500" height="275" />
 
-- truncate video with start and end time
+- Truncate video with start and end time  
   <img style="text-align: center;" alt="Tab 2" src="./Docs/UI-tab2.png" width="500" height="275" />
-- convert any audio format to mp3
+- Convert any audio/video format to mp3/mp4  
   <img style="text-align: center;" alt="Tab 3" src="./Docs/UI-tab3.png" width="500" height="275" />
-- concatenate two videos
+- Concatenate two videos  
   <img style="text-align: center;" alt="Tab 4" src="./Docs/UI-tab4.png" width="500" height="275" />
-- combine pdf files
+- Combine pdf files  
   <img style="text-align: center;" alt="Tab 5" src="./Docs/UI-tab5.png" width="500" height="275" />
-- Convert images to pdf
+- Convert images to pdf  
   <img style="text-align: center;" alt="Tab 6" src="./Docs/UI-tab6.png" width="500" height="275" />
 
-1. Download `DopplerSetup.msi` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.5.0/DopplerSetup.msi)
+1. Download `DopplerSetup.msi` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.6.0/DopplerSetup.msi)
 
 2. Execute it
 
@@ -46,7 +46,7 @@ This application can
 
 ## Get started
 
-1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.5.0/Doppler-portable)
+1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.6.0/Doppler-portable)
 
 2. Extract zip on your computer
 
@@ -55,7 +55,7 @@ This application can
     - It will list folder files and submit several renaming.
     - After choosing one the application rename files automatically
 
-4. You will need to download FFMPEG from this link https://www.gyan.dev/ffmpeg/builds/#release-builds  
+4. You will need to download FFMPEG from this link : https://www.gyan.dev/ffmpeg/builds/#release-builds  
    or download now with this link : https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
 
 ## Contact

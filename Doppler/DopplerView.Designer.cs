@@ -70,8 +70,11 @@ namespace Doppler
             this.sourceVideoButton2 = new System.Windows.Forms.Button();
             this.textBoxSourceFile2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.tabConvertMp3 = new System.Windows.Forms.TabPage();
-            this.Mp3ConvertButton = new System.Windows.Forms.Button();
+            this.tabConvertMp = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
+            this.mp4radioButton = new System.Windows.Forms.RadioButton();
+            this.mp3radioButton = new System.Windows.Forms.RadioButton();
+            this.MpConvertButton = new System.Windows.Forms.Button();
             this.ffmpegButton3 = new System.Windows.Forms.Button();
             this.textBoxFfmpegPath3 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -104,7 +107,6 @@ namespace Doppler
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.flowLayoutFiles = new System.Windows.Forms.FlowLayoutPanel();
             this.PdfCombineButton = new System.Windows.Forms.Button();
-            this.themeSwitch = new Switch();
             this.tabImageToPdf = new System.Windows.Forms.TabPage();
             this.resetFiles2 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
@@ -113,7 +115,7 @@ namespace Doppler
             this.tabControl1.SuspendLayout();
             this.tabVideoToImage.SuspendLayout();
             this.tabTruncateVideo.SuspendLayout();
-            this.tabConvertMp3.SuspendLayout();
+            this.tabConvertMp.SuspendLayout();
             this.tabMergeVideos.SuspendLayout();
             this.tabPdfCombine.SuspendLayout();
             this.tabImageToPdf.SuspendLayout();
@@ -268,7 +270,7 @@ namespace Doppler
             // 
             this.tabControl1.Controls.Add(this.tabVideoToImage);
             this.tabControl1.Controls.Add(this.tabTruncateVideo);
-            this.tabControl1.Controls.Add(this.tabConvertMp3);
+            this.tabControl1.Controls.Add(this.tabConvertMp);
             this.tabControl1.Controls.Add(this.tabMergeVideos);
             this.tabControl1.Controls.Add(this.tabPdfCombine);
             this.tabControl1.Controls.Add(this.tabImageToPdf);
@@ -475,36 +477,70 @@ namespace Doppler
             this.label7.TabIndex = 5;
             this.label7.Text = "Choose a video";
             // 
-            // tabConvertMp3
+            // tabConvertMp
             // 
-            this.tabConvertMp3.BackColor = System.Drawing.SystemColors.Control;
-            this.tabConvertMp3.Controls.Add(this.Mp3ConvertButton);
-            this.tabConvertMp3.Controls.Add(this.ffmpegButton3);
-            this.tabConvertMp3.Controls.Add(this.textBoxFfmpegPath3);
-            this.tabConvertMp3.Controls.Add(this.button3);
-            this.tabConvertMp3.Controls.Add(this.button6);
-            this.tabConvertMp3.Controls.Add(this.label12);
-            this.tabConvertMp3.Controls.Add(this.destinationFolderButton3);
-            this.tabConvertMp3.Controls.Add(this.textBoxDestinationFolder3);
-            this.tabConvertMp3.Controls.Add(this.label13);
-            this.tabConvertMp3.Controls.Add(this.sourceMusicButton);
-            this.tabConvertMp3.Controls.Add(this.textBoxSourceFile3);
-            this.tabConvertMp3.Controls.Add(this.label14);
-            this.tabConvertMp3.Location = new System.Drawing.Point(4, 22);
-            this.tabConvertMp3.Name = "tabConvertMp3";
-            this.tabConvertMp3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConvertMp3.Size = new System.Drawing.Size(762, 369);
-            this.tabConvertMp3.TabIndex = 2;
-            this.tabConvertMp3.Text = "ConvertMp3";
+            this.tabConvertMp.BackColor = System.Drawing.SystemColors.Control;
+            this.tabConvertMp.Controls.Add(this.label19);
+            this.tabConvertMp.Controls.Add(this.mp4radioButton);
+            this.tabConvertMp.Controls.Add(this.mp3radioButton);
+            this.tabConvertMp.Controls.Add(this.MpConvertButton);
+            this.tabConvertMp.Controls.Add(this.ffmpegButton3);
+            this.tabConvertMp.Controls.Add(this.textBoxFfmpegPath3);
+            this.tabConvertMp.Controls.Add(this.button3);
+            this.tabConvertMp.Controls.Add(this.button6);
+            this.tabConvertMp.Controls.Add(this.label12);
+            this.tabConvertMp.Controls.Add(this.destinationFolderButton3);
+            this.tabConvertMp.Controls.Add(this.textBoxDestinationFolder3);
+            this.tabConvertMp.Controls.Add(this.label13);
+            this.tabConvertMp.Controls.Add(this.sourceMusicButton);
+            this.tabConvertMp.Controls.Add(this.textBoxSourceFile3);
+            this.tabConvertMp.Controls.Add(this.label14);
+            this.tabConvertMp.Location = new System.Drawing.Point(4, 22);
+            this.tabConvertMp.Name = "tabConvertMp";
+            this.tabConvertMp.Padding = new System.Windows.Forms.Padding(3);
+            this.tabConvertMp.Size = new System.Drawing.Size(762, 369);
+            this.tabConvertMp.TabIndex = 2;
+            this.tabConvertMp.Text = "ConvertMp3";
             // 
-            // Mp3ConvertButton
+            // label19
             // 
-            this.Mp3ConvertButton.Location = new System.Drawing.Point(276, 310);
-            this.Mp3ConvertButton.Name = "Mp3ConvertButton";
-            this.Mp3ConvertButton.Size = new System.Drawing.Size(133, 23);
-            this.Mp3ConvertButton.TabIndex = 30;
-            this.Mp3ConvertButton.Text = "Convert to MP3";
-            this.Mp3ConvertButton.UseVisualStyleBackColor = true;
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(55, 149);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(64, 13);
+            this.label19.TabIndex = 33;
+            this.label19.Text = "Convert into";
+            // 
+            // mp4radioButton
+            // 
+            this.mp4radioButton.AutoSize = true;
+            this.mp4radioButton.Location = new System.Drawing.Point(207, 148);
+            this.mp4radioButton.Name = "mp4radioButton";
+            this.mp4radioButton.Size = new System.Drawing.Size(47, 17);
+            this.mp4radioButton.TabIndex = 32;
+            this.mp4radioButton.Text = "MP4";
+            this.mp4radioButton.UseVisualStyleBackColor = true;
+            // 
+            // mp3radioButton
+            // 
+            this.mp3radioButton.AutoSize = true;
+            this.mp3radioButton.Checked = true;
+            this.mp3radioButton.Location = new System.Drawing.Point(142, 148);
+            this.mp3radioButton.Name = "mp3radioButton";
+            this.mp3radioButton.Size = new System.Drawing.Size(47, 17);
+            this.mp3radioButton.TabIndex = 31;
+            this.mp3radioButton.TabStop = true;
+            this.mp3radioButton.Text = "MP3";
+            this.mp3radioButton.UseVisualStyleBackColor = true;
+            // 
+            // MpConvertButton
+            // 
+            this.MpConvertButton.Location = new System.Drawing.Point(276, 310);
+            this.MpConvertButton.Name = "MpConvertButton";
+            this.MpConvertButton.Size = new System.Drawing.Size(133, 23);
+            this.MpConvertButton.TabIndex = 30;
+            this.MpConvertButton.Text = "Convert";
+            this.MpConvertButton.UseVisualStyleBackColor = true;
             // 
             // ffmpegButton3
             // 
@@ -598,9 +634,9 @@ namespace Doppler
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(55, 45);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(191, 13);
+            this.label14.Size = new System.Drawing.Size(211, 13);
             this.label14.TabIndex = 19;
-            this.label14.Text = "Choose a music (mp4, ogg, m4a, etc...)";
+            this.label14.Text = "Choose a music (mp4, ogg, m4a, avi, etc...)";
             // 
             // tabMergeVideos
             // 
@@ -806,22 +842,6 @@ namespace Doppler
             this.PdfCombineButton.Text = "Combine PDF";
             this.PdfCombineButton.UseVisualStyleBackColor = true;
             // 
-            // themeSwitch
-            // 
-            this.themeSwitch.Appearance = System.Windows.Forms.Appearance.Button;
-            this.themeSwitch.AutoSize = true;
-            this.themeSwitch.BackColor = System.Drawing.Color.White;
-            this.themeSwitch.FlatAppearance.BorderSize = 0;
-            this.themeSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.themeSwitch.Location = new System.Drawing.Point(16, 13);
-            this.themeSwitch.MinimumSize = new System.Drawing.Size(30, 15);
-            this.themeSwitch.Name = "themeSwitch";
-            this.themeSwitch.Size = new System.Drawing.Size(53, 23);
-            this.themeSwitch.TabIndex = 17;
-            this.themeSwitch.Text = "switch1";
-            this.themeSwitch.UseVisualStyleBackColor = false;
-            this.themeSwitch.Click += ThemeSwitch_Click;
-            // 
             // tabImageToPdf
             // 
             this.tabImageToPdf.BackColor = System.Drawing.SystemColors.Control;
@@ -876,7 +896,6 @@ namespace Doppler
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 450);
-            this.Controls.Add(this.themeSwitch);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label4);
@@ -888,8 +907,8 @@ namespace Doppler
             this.tabVideoToImage.PerformLayout();
             this.tabTruncateVideo.ResumeLayout(false);
             this.tabTruncateVideo.PerformLayout();
-            this.tabConvertMp3.ResumeLayout(false);
-            this.tabConvertMp3.PerformLayout();
+            this.tabConvertMp.ResumeLayout(false);
+            this.tabConvertMp.PerformLayout();
             this.tabMergeVideos.ResumeLayout(false);
             this.tabMergeVideos.PerformLayout();
             this.tabPdfCombine.ResumeLayout(false);
@@ -923,7 +942,7 @@ namespace Doppler
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.TabPage tabVideoToImage;
         public System.Windows.Forms.TabPage tabTruncateVideo;
-        public System.Windows.Forms.TabPage tabConvertMp3;
+        public System.Windows.Forms.TabPage tabConvertMp;
         public System.Windows.Forms.TabPage tabMergeVideos;
         public System.Windows.Forms.TabPage tabPdfCombine;
         public System.Windows.Forms.Label label8;
@@ -946,8 +965,7 @@ namespace Doppler
         public System.Windows.Forms.TextBox startTime;
         public System.Windows.Forms.Label label10;
         public System.Windows.Forms.Label label11;
-        public Switch themeSwitch;
-        public System.Windows.Forms.Button Mp3ConvertButton;
+        public System.Windows.Forms.Button MpConvertButton;
         public System.Windows.Forms.Button ffmpegButton3;
         public System.Windows.Forms.TextBox textBoxFfmpegPath3;
         public System.Windows.Forms.Button button3;
@@ -983,5 +1001,8 @@ namespace Doppler
         public System.Windows.Forms.ProgressBar progressBar2;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutFiles2;
         public System.Windows.Forms.Button ImageToPdfButton;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.RadioButton mp4radioButton;
+        private System.Windows.Forms.RadioButton mp3radioButton;
     }
 }

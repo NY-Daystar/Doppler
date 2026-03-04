@@ -20,14 +20,13 @@ namespace Doppler
         /// Manager
         /// </summary>
         private FileManager FileManager;
-        private ThemeManager ThemeManager;
 
         /// <summary>
         /// Tabs List functionalities
         /// </summary>
         private ImageToPdfConverter ImageToPdfConverter;
         private PdfCombiner PdfCombiner;
-        private Mp3Converter Mp3Converter;
+        private MpConverter MpConverter;
         private VideoMerger VideoMerger;
         private VideoToImagesConverter VideoToImagesConverter;
         private VideoTruncater VideoTruncater;
@@ -55,10 +54,9 @@ namespace Doppler
         private void SetupComponents()
         {
             FileManager = new FileManager();
-            ThemeManager = new ThemeManager(this, Config);
             VideoToImagesConverter = new VideoToImagesConverter(Config, FileManager);
             VideoTruncater = new VideoTruncater(Config, FileManager);
-            Mp3Converter = new Mp3Converter(Config, FileManager);
+            MpConverter = new MpConverter(Config, FileManager);
             VideoMerger = new VideoMerger(Config, FileManager);
             PdfCombiner = new PdfCombiner(Config, FileManager);
             ImageToPdfConverter = new ImageToPdfConverter(Config, FileManager);
@@ -71,10 +69,9 @@ namespace Doppler
         {
             versionLabel.Text = $"Version: v{Constants.VERSION}";
             FileManager.AttachComponents(this);
-            ThemeManager.AttachComponents();
             VideoToImagesConverter.AttachComponents(tabVideoToImage);
             VideoTruncater.AttachComponents(tabTruncateVideo);
-            Mp3Converter.AttachComponents(tabConvertMp3);
+            MpConverter.AttachComponents(tabConvertMp);
             VideoMerger.AttachComponents(tabMergeVideos);
             PdfCombiner.AttachComponents(tabPdfCombine);
             ImageToPdfConverter.AttachComponents(tabImageToPdf);
@@ -117,11 +114,6 @@ namespace Doppler
         private void GoToGithub(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(Constants.GITHUB_LINK);
-        }
-
-        private void ThemeSwitch_Click(object sender, EventArgs e)
-        {
-            ThemeManager?.Switch(sender, e);
         }
     }
 }
