@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Project releases
 
+### v1.6.0 - March 4th, 2026 - Mp4
+
+#### Added
+
+- new tool to convert video format to mp4
+
 ### v1.5.0 - March 2nd, 2026 - combine pdf
 
 #### Added

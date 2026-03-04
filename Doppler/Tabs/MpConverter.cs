@@ -1,13 +1,18 @@
-﻿using Doppler.Utils;
+﻿using Doppler.Components;
+using Doppler.Utils;
 using NLog;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
 namespace Doppler.Tabs
 {
-    public class Mp3Converter : ITab
+    /// <summary>
+    /// Can convert Mp3 or Mp4
+    /// </summary>
+    public class MpConverter : ITab
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -16,8 +21,12 @@ namespace Doppler.Tabs
 
         private TextBox SourceFile, DestinationFolder, PathFfmpeg;
         private Button SourceButton, DestinationButton, FfMpegButton, ConverterButton;
+        private RadioButton Mp3RadioButton, Mp4RadioButton;
+        private RadioGroup FormatRadioGroup;
 
-        public Mp3Converter(DopplerConfig config, FileManager fileManager)
+        private string FormatSelected = FormatConversion.MP3;
+
+        public MpConverter(DopplerConfig config, FileManager fileManager)
         {
             Config = config;
             FileManager = fileManager;
@@ -49,15 +58,30 @@ namespace Doppler.Tabs
                 FfMpegButton = btn3;
             FfMpegButton.Click += DefinePath;
 
-            if (tab.Controls["Mp3ConvertButton"] is Button btn4)
+            if (tab.Controls["MpConvertButton"] is Button btn4)
                 ConverterButton = btn4;
             ConverterButton.Click += Launch;
+
+            if (tab.Controls["mp3radioButton"] is RadioButton rb)
+                Mp3RadioButton = rb;
+            Mp3RadioButton.Click += SelectFormat;
+            if (tab.Controls["mp4radioButton"] is RadioButton rb2)
+                Mp4RadioButton = rb2;
+            Mp4RadioButton.Click += SelectFormat;
+
+            FormatRadioGroup = new RadioGroup(new List<RadioButtonExtend>() {
+                new RadioButtonExtend(Mp3RadioButton, FormatConversion.MP3),
+                new RadioButtonExtend(Mp4RadioButton, FormatConversion.MP4)
+            });
         }
 
         private void Launch(object sender, EventArgs e)
         {
-            Logger.Info("Launch Mp3 Converter");
+            Logger.Info($"Launch {FormatSelected} Converter");
             string argsCmd = $"-i \"{Config.SourcePath}\" -codec:a libmp3lame -qscale:a 2 \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}.mp3\"";
+            if(FormatSelected.Equals(FormatConversion.MP4))
+                argsCmd = $"-i \"{Config.SourcePath}\" -c copy \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}.mp4\"";
+            
             Logger.Debug($"{Config.FfmpegPath} {argsCmd}");
 
             using (Process process = new Process())
@@ -72,6 +96,12 @@ namespace Doppler.Tabs
             }
 
             Process.Start("explorer.exe", Config.DestinationFolderPath);
+        }
+
+        private void SelectFormat(object sender, EventArgs e)
+        {
+            var rbe = FormatRadioGroup.Find((RadioButton)sender);
+            FormatSelected = FormatRadioGroup.Handle(rbe);
         }
 
         private void DefinePath(object sender, EventArgs e)
