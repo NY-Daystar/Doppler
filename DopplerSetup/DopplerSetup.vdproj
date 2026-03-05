@@ -87,6 +87,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0F016A6CDAFD4B9BA585AA9028E74C04"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2D3730A540D9B2A108A903A10EC66CC9"
         "OwnerKey" = "8:_6769A3BB13F8473898DD0EA6649BB5CC"
         "MsmSig" = "8:_UNDEFINED"
@@ -143,12 +149,6 @@
         {
         "MsmKey" = "8:_4860B9C4D8C0FC3F6010B6BB4F2CB9DD"
         "OwnerKey" = "8:_F5EC17E37CF913FB0FAFF9C4F00FC521"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4A982794BB46456C95C6026E4543CD33"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -884,6 +884,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -908,6 +916,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -1029,6 +1045,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0F016A6CDAFD4B9BA585AA9028E74C04"
+            {
+            "SourcePath" = "8:..\\Doppler\\DopplerLogo.ico"
+            "TargetName" = "8:DopplerLogo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_4A47C69FD2B84214AC6D4D477079E8C1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2D3730A540D9B2A108A903A10EC66CC9"
@@ -1184,26 +1220,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A982794BB46456C95C6026E4543CD33"
-            {
-            "SourcePath" = "8:..\\DopplerLogo.ico"
-            "TargetName" = "8:DopplerLogo.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_4A47C69FD2B84214AC6D4D477079E8C1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_548A3D352197D35826621DCAB442A274"
@@ -2068,15 +2084,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Doppler"
-        "ProductCode" = "8:{4E6AD48A-3563-41D5-8179-0E54A29CBB94}"
-        "PackageCode" = "8:{8E6218CF-F64F-49CF-8384-74BBA0E3FECC}"
+        "ProductCode" = "8:{0ED95C57-3212-4018-A453-622D70A52434}"
+        "PackageCode" = "8:{CF58AEAC-C779-4569-9916-5BB650CD99E2}"
         "UpgradeCode" = "8:{9652C0A4-17C3-43EB-B7CC-72376CDE6E0E}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.6.0"
+        "ProductVersion" = "8:1.7.0"
         "Manufacturer" = "8:NY-Daystar"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -2200,7 +2216,7 @@
             "Target" = "8:_6769A3BB13F8473898DD0EA6649BB5CC"
             "Folder" = "8:_B3C75832620D48B7B3941BF1DFAA7BF6"
             "WorkingFolder" = "8:_4A47C69FD2B84214AC6D4D477079E8C1"
-            "Icon" = "8:_4A982794BB46456C95C6026E4543CD33"
+            "Icon" = "8:_0F016A6CDAFD4B9BA585AA9028E74C04"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4A6F5E0147A24DBCAB14C27DB002FB28"
@@ -2214,7 +2230,7 @@
             "Target" = "8:_6769A3BB13F8473898DD0EA6649BB5CC"
             "Folder" = "8:_CA65F524189941E69DCFE6EF5A055643"
             "WorkingFolder" = "8:_4A47C69FD2B84214AC6D4D477079E8C1"
-            "Icon" = "8:_4A982794BB46456C95C6026E4543CD33"
+            "Icon" = "8:_0F016A6CDAFD4B9BA585AA9028E74C04"
             "Feature" = "8:"
             }
         }
@@ -2616,9 +2632,37 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_343CB93A26364A58A3092B84112C7B22"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4A47C69FD2B84214AC6D4D477079E8C1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
+            "OutputProjectGuid" = "8:{9FD717C1-8DFF-4E00-A426-344411AB99FF}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6769A3BB13F8473898DD0EA6649BB5CC"
             {
-            "SourcePath" = "8:..\\Doppler\\obj\\Release\\Doppler.exe"
+            "SourcePath" = "8:..\\Doppler\\obj\\Debug\\Doppler.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4A47C69FD2B84214AC6D4D477079E8C1"
