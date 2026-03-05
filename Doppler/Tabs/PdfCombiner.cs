@@ -13,22 +13,15 @@ namespace Doppler.Tabs
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly DopplerConfig Config;
-        private readonly FileManager FileManager;
-
         private FlowLayoutPanel FlowLayoutFiles;
         private ProgressBar ProgressBar;
         private Button ResetButton, CombinerButton;
 
         private List<DopplerFile> Files = new List<DopplerFile> { };
 
-        private static string MergeFileName = "combinepdf";  
+        private const string Output = "combine";
 
-        public PdfCombiner(DopplerConfig config, FileManager fileManager)
-        {
-            Config = config;
-            FileManager = fileManager;
-        }
+        public PdfCombiner() { }
 
         public void AttachComponents(TabPage tab)
         {
@@ -36,7 +29,7 @@ namespace Doppler.Tabs
                 FlowLayoutFiles = flp;
             FlowLayoutFiles.DragDrop += HandleDragDrop;
             FlowLayoutFiles.DragEnter += HandleDragEnter;
-            
+
             if (tab.Controls["progressBar1"] is ProgressBar pn)
                 ProgressBar = pn;
 
@@ -64,7 +57,7 @@ namespace Doppler.Tabs
             var sfd = new SaveFileDialog()
             {
                 Filter = "PDF (*.pdf)|*.pdf",
-                FileName = $"{MergeFileName}.pdf"
+                FileName = $"{Output}.pdf"
             };
 
             if (sfd.ShowDialog() != DialogResult.OK)
@@ -95,11 +88,11 @@ namespace Doppler.Tabs
 
                 MessageBox.Show("Fusion succesful");
                 ResetFiles(null, null);
-                
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error : " + ex.Message);
+                MessageBox.Show("Error Combine : " + ex.Message);
             }
             finally
             {
@@ -112,7 +105,7 @@ namespace Doppler.Tabs
             FlowLayoutFiles.Controls.Clear();
             Files.Clear();
         }
-     
+
 
         /// <summary>
         /// help: https://learn.microsoft.com/en-us/dotnet/desktop/winforms/advanced/walkthrough-performing-a-drag-and-drop-operation-in-windows-forms

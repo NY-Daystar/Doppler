@@ -33,7 +33,7 @@ This application can
 - Convert images to pdf  
   <img style="text-align: center;" alt="Tab 6" src="./Docs/UI-tab6.png" width="500" height="275" />
 
-1. Download `DopplerSetup.msi` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.6.0/DopplerSetup.msi)
+1. Download `DopplerSetup.msi` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.7.0/DopplerSetup.msi)
 
 2. Execute it
 
@@ -46,7 +46,7 @@ This application can
 
 ## Get started
 
-1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.6.0/Doppler-portable)
+1. Download `Doppler` project from [this link](https://github.com/NY-Daystar/Doppler/releases/download/v1.7.0/Doppler-portable)
 
 2. Extract zip on your computer
 

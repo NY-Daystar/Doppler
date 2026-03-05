@@ -1,10 +1,9 @@
 ﻿using Doppler.Exceptions;
 using Doppler.Utils;
+using Newtonsoft.Json;
 using NLog;
 using System;
 using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Doppler
 {
@@ -18,44 +17,56 @@ namespace Doppler
         /// <summary>
         /// Source path of the video
         /// </summary>
-        [JsonPropertyName("source_path")]
+        [JsonProperty("source_path")]
         public string SourcePath { get; set; } = string.Empty;
 
         /// <summary>
         /// Folder to save images after processing
         /// </summary>
-        [JsonPropertyName("destination_path")]
+        [JsonProperty("destination_path")]
         public string DestinationFolderPath { get; set; } = string.Empty;
 
         /// <summary>
         /// Path of FFMPEG path executable
         /// </summary>
-        [JsonPropertyName("ffmpeg_path")]
+        [JsonProperty("ffmpeg_path")]
         public string FfmpegPath { get; set; } = string.Empty;
 
         /// <summary>
         /// Path of seconde source video file to merge with SourcePath
         /// </summary>
-        [JsonPropertyName("merge_path")]
+        [JsonProperty("merge_path")]
         public string MergePath { get; set; } = string.Empty;
 
         /// <summary>
         /// Start time to truncate video
         /// </summary>
-        [JsonPropertyName("start")]
+        [JsonProperty("start")]
         public string StartTime { get; set; } = string.Empty;
 
         /// <summary>
         /// End time to truncate video
         /// </summary>
-        [JsonPropertyName("end")]
+        [JsonProperty("end")]
         public string EndTime { get; set; } = string.Empty;
 
         /// <summary>
         /// Light or Dark Theme
         /// </summary>
-        [JsonPropertyName("theme")]
-        public DopplerTheme Theme { get; set; }
+        [JsonProperty("theme")]
+        public DopplerTheme Theme { get; set; } = DopplerTheme.LIGHT;
+
+        /// <summary>
+        /// Language (default : "en-US")
+        /// </summary>
+        [JsonProperty("language")]
+        public string AppLanguage { get; set; } = "en-US";
+
+        /// <summary>
+        /// Keep last tab displayed
+        /// </summary>
+        [JsonProperty("tab")]
+        public int CurrentTab { get; set; } = 3;
 
         /// <summary>
         /// Config file store in AppData folder : %APPDATA%\Addams
@@ -93,19 +104,6 @@ namespace Doppler
         }
 
         /// <summary>
-        /// Init data
-        /// </summary>
-        public void Setup()
-        {
-            SourcePath = string.Empty;
-            DestinationFolderPath = string.Empty;
-            FfmpegPath = string.Empty;
-            StartTime = string.Empty;
-            EndTime = string.Empty;
-            Theme = DopplerTheme.LIGHT;
-        }
-
-        /// <summary>
         /// Serialize object to save json file in appData
         /// </summary>
         /// <exception cref="DirectoryNotFoundException"></exception>
@@ -124,11 +122,8 @@ namespace Doppler
                 }
                 File.Create(ConfigFilepath).Close();
             }
-            JsonSerializerOptions options = new JsonSerializerOptions()
-            {
-                WriteIndented = true,
-            };
-            string content = JsonSerializer.Serialize(this, options);
+            //string content = JsonSerializer.Serialize(this, options);
+            string content = JsonConvert.SerializeObject(this, Formatting.Indented);
             File.WriteAllText(ConfigFilepath, content);
         }
 
@@ -142,7 +137,7 @@ namespace Doppler
             {
                 string content = File.ReadAllText(ConfigFilepath);
                 Logger.Debug($"Read config path {ConfigFilepath}");
-                return JsonSerializer.Deserialize<DopplerConfig>(content) ?? new DopplerConfig();
+                return JsonConvert.DeserializeObject<DopplerConfig>(content) ?? new DopplerConfig();
             }
             catch
             {

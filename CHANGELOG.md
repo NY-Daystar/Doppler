@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Project releases
 
+### v1.7.0 - March 15th, 2026 - Resolve issues
+
+#### Added
+
+- new tool to watermark pdf file
+
 ### v1.6.0 - March 4th, 2026 - Mp4
 
 #### Added

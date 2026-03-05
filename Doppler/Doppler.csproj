@@ -77,6 +77,9 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.6.0.2\lib\net46\NLog.dll</HintPath>
     </Reference>
@@ -168,10 +171,38 @@
       <DependentUpon>DopplerView.cs</DependentUpon>
     </Compile>
     <Compile Include="Doppler.cs" />
+    <Compile Include="Exceptions\ComboBoxException.cs" />
     <Compile Include="Exceptions\DopplerConfigException.cs" />
+    <Compile Include="Resources\Language.es.Designer.cs">
+      <DependentUpon>Language.es.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Language.it.Designer.cs">
+      <DependentUpon>Language.it.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Language.fr.Designer.cs">
+      <DependentUpon>Language.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Language.en.Designer.cs">
+      <DependentUpon>Language.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Language.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.de.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tabs\ImageToPdfConverter.cs" />
+    <Compile Include="Tabs\Settings.cs" />
     <Compile Include="Tabs\PdfCombiner.cs" />
     <Compile Include="Tabs\MpConverter.cs" />
+    <Compile Include="Tabs\WatermarkPdf.cs" />
     <Compile Include="Tabs\VideoMerger.cs" />
     <Compile Include="Utils\AutoUpdater.cs" />
     <Compile Include="Utils\DopplerFile.cs" />
@@ -181,8 +212,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tabs\VideoTruncater.cs" />
     <Compile Include="Utils\FormatConversion.cs" />
+    <Compile Include="Utils\Language.cs" />
     <EmbeddedResource Include="DopplerView.resx">
       <DependentUpon>DopplerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

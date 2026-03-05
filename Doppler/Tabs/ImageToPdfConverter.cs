@@ -13,20 +13,13 @@ namespace Doppler.Tabs
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly DopplerConfig Config;
-        private readonly FileManager FileManager;
-
         private FlowLayoutPanel FlowLayoutFiles;
         private ProgressBar ProgressBar;
         private Button ResetButton, ConverterButton;
 
         private List<DopplerFile> Files = new List<DopplerFile> { };
 
-        public ImageToPdfConverter(DopplerConfig config, FileManager fileManager)
-        {
-            Config = config;
-            FileManager = fileManager;
-        }
+        public ImageToPdfConverter(){ }
 
         public void AttachComponents(TabPage tab)
         {

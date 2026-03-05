@@ -9,11 +9,11 @@ function main() {
     check 'prerequisites' $?
     log "[✔] Verify prerequisites"
 
-    restore $DETAILED
+    restore
     check 'restore' $?
     log "[✔] Restore Nuget"
 
-    compile $DETAILED
+    compile
     check 'compile' $?
     log "[✔] Compiling"
 
@@ -53,9 +53,7 @@ function check() {
     esac
 }
 
-function check_version(){
-    log checking verison
-
+function check_version() {
     last_tag=$(git tag | tail -n 1)
     if [ -z ${last_tag} ];then
         return 0
@@ -84,12 +82,12 @@ function check_prerequisites() {
 }
 
 function restore() {
-    [ "${DETAILED}" == "true" ] && dotnet restore ${SLN_PATH} || dotnet restore ${SLN_PATH} >/dev/null
+    dotnet restore ${SLN_PATH} >/dev/null
     return $?
 }
 
 function compile() {
-    [ "${DETAILED}" == "true" ] && dotnet build ${SLN_PATH} || dotnet build ${SLN_PATH} >/dev/null
+    dotnet build ${SLN_PATH} >/dev/null
     return $?
 }
 
