@@ -399,4 +399,11 @@ FodyWeavers.xsd
 
 launchSettings.json
 
-Tests/
+# Tests
+**/Tests/1-VideoToImages/*.png
+**/Tests/2-TruncateVideo/*-[0-9]*.mp4
+**/Tests/3-ConvertMp/*.mp[3-4]
+**/Tests/4-MergeVideos/merge.mp4
+**/Tests/5-PDFCombine/output.pdf
+**/Tests/6-ImageToPdf/*.pdf
+**/Tests/7-Watermark/output.pdf

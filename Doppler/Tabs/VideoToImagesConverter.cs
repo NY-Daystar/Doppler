@@ -1,7 +1,7 @@
-﻿using Doppler.Utils;
+﻿using Doppler.Components;
+using Doppler.Core.Services;
 using NLog;
 using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Doppler.Tabs
@@ -34,7 +34,7 @@ namespace Doppler.Tabs
 
             if (tab.Controls["textBoxFfmpegPath"] is TextBox tb3)
                 PathFfmpeg = tb3;
-            PathFfmpeg.Text = Config.FfmpegPath;
+            PathFfmpeg.Text = Config.FfMpegPath;
             
             if (tab.Controls["sourceVideoButton"] is Button btn)
                 SourceButton = btn;
@@ -59,22 +59,8 @@ namespace Doppler.Tabs
         private void Launch(object sender, EventArgs e)
         {
             Logger.Info("Launch image Converter");
-
-            string argsCmd = $"-i \"{Config.SourcePath}\" -vf fps=1 \"{Config.DestinationFolderPath}/image%04d.png\"";
-            Logger.Debug($"{Config.FfmpegPath} {argsCmd}");
-
-            using (Process process = new Process())
-            {
-                process.StartInfo = new ProcessStartInfo
-                {
-                    FileName = Config.FfmpegPath,
-                    UseShellExecute = true,
-                    Arguments = argsCmd,
-                };
-                process.Start();
-            }
-
-            Process.Start("explorer.exe", Config.DestinationFolderPath);
+            VideoService service = new VideoService(Config);
+            service.VideoToImages();
         }
 
         private void DefinePath(object sender, EventArgs e)
@@ -100,7 +86,7 @@ namespace Doppler.Tabs
             {
                 var filePath = FileManager.SearchFile();
                 PathFfmpeg.Text = filePath;
-                Config.FfmpegPath = filePath;
+                Config.FfMpegPath = filePath;
                 Config.Save();
             }
         }

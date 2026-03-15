@@ -1,9 +1,13 @@
 #!/bin/bash
 
 SLN_PATH=Doppler.sln
+MSBUILD="/c/Program\ Files/Microsoft\ Visual\ Studio/18/Community/MSBuild/Current/Bin/MSBuild.exe"
+DLL=$(dirname "$(dirname "$(realpath $0)")")/Doppler.Tests/bin/Debug/net48/Doppler.Tests.exe
 
 function main() {
     check_version
+    check_empty_folder
+    check_big_files
 
     check_prerequisites
     check 'prerequisites' $?
@@ -77,6 +81,21 @@ function check_version() {
     fi
 }
 
+function check_empty_folder(){
+    folders=$(find . -type d -empty -not -path "./.git/*" -not -path "**obj/*" -not -path "**bin/*")
+    for folder in ${folders[@]};do
+        log_color "the folder \"${folder}\" is empty" "yellow"
+    done
+}
+
+function check_big_files() {
+    size=5M
+    files=$(find . -type f -size +${size} -not -path "./.git/*")
+    for file in ${files[@]};do
+        log_color "the file \"${file}\" > ${size}" "yellow"
+    done
+}
+
 function check_prerequisites() {
     which dotnet >/dev/null
 }
@@ -87,13 +106,14 @@ function restore() {
 }
 
 function compile() {
-    dotnet build ${SLN_PATH} >/dev/null
+    cmd="${MSBUILD} ${SLN_PATH} >/dev/null"
+    eval ${cmd}
     return $?
 }
 
 function unittest() {
     [[ -z "${DLL}" ]] && log_color "Careful you have no tests project" "yellow"
-    [ "${DETAILED}" == "true" ] && dotnet test ${DLL} || dotnet test ${DLL} >/dev/null
+    dotnet test ${DLL} >/dev/null
     return $?
 }
 

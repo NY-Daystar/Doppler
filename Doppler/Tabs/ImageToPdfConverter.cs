@@ -1,7 +1,6 @@
-﻿using Doppler.Utils;
+﻿using Doppler.Core.Services;
+using Doppler.Core.Utils;
 using NLog;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +16,7 @@ namespace Doppler.Tabs
         private ProgressBar ProgressBar;
         private Button ResetButton, ConverterButton;
 
-        private List<DopplerFile> Files = new List<DopplerFile> { };
+        private readonly List<DopplerFile> Files = new List<DopplerFile> { };
 
         public ImageToPdfConverter(){ }
 
@@ -60,59 +59,35 @@ namespace Doppler.Tabs
             if (sfd.ShowDialog() != DialogResult.OK)
                 return;
 
-            var path = new FileInfo(sfd.FileName).Directory.FullName;
+            var destPath = new FileInfo(sfd.FileName).Directory.FullName;
 
             try
             {
                 ProgressBar.Value = 0;
                 ProgressBar.Visible = true;
 
+                var service = new PdfService();
+
                 // Convert to PDF and delete image
                 for (int i = 0; i < Files.Count; i++)
                 {
                     var name = Path.GetFileNameWithoutExtension(Files[i].Path);
-                    SaveImageAsPdf(Files[i].Path, $"{Path.Combine(path, name)}.pdf");
+                    service.SaveImageAsPdf(Files[i].Path, $"{Path.Combine(destPath, name)}.pdf");
 
                     ProgressBar.Value = (int)((i + 1) * 100.0 / Files.Count);
                     Application.DoEvents();
                 }
-
-                MessageBox.Show("Conversion succesful");
+                MessageBox.Show("Conversion successful");
                 ResetFiles(null, null);
-                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error : " + ex.Message);
+                MessageBox.Show("Error ImageToPdf : " + ex.Message);
             }
             finally
             {
                 ProgressBar.Visible = false;
             }
-        }
-
-        internal void SaveImageAsPdf(string imageFileName, string pdfFileName, int width = 600, bool deleteImage = false)
-        {
-            using (var document = new PdfDocument())
-            {
-                PdfPage page = document.AddPage();
-                using (XImage img = XImage.FromFile(imageFileName))
-                {
-                    // Calculate new height to keep image ratio
-                    var height = (int)(((double)width / (double)img.PixelWidth) * img.PixelHeight);
-
-                    // Change PDF Page size to match image
-                    page.Width = XUnit.FromPoint(width);
-                    page.Height = XUnit.FromPoint(height);
-
-                    XGraphics gfx = XGraphics.FromPdfPage(page);
-                    gfx.DrawImage(img, 0, 0, width, height);
-                }
-                document.Save(pdfFileName);
-            }
-
-            if (deleteImage)
-                File.Delete(imageFileName);
         }
 
         private void ResetFiles(object sender, EventArgs e)
@@ -121,7 +96,6 @@ namespace Doppler.Tabs
             Files.Clear();
         }
      
-
         /// <summary>
         /// help: https://learn.microsoft.com/en-us/dotnet/desktop/winforms/advanced/walkthrough-performing-a-drag-and-drop-operation-in-windows-forms
         /// </summary>
@@ -147,8 +121,10 @@ namespace Doppler.Tabs
 
             foreach (var file in Files)
             {
-                Label label = new Label();
-                label.Text = file.Name;
+                Label label = new Label
+                {
+                    Text = file.Name
+                };
                 Logger.Info(file.Path);
                 FlowLayoutFiles.Controls.Add(label);
             }

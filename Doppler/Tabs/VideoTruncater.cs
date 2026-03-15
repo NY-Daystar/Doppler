@@ -1,8 +1,7 @@
-﻿using Doppler.Utils;
+﻿using Doppler.Components;
+using Doppler.Core.Services;
 using NLog;
 using System;
-using System.Diagnostics;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Doppler.Tabs
@@ -35,7 +34,7 @@ namespace Doppler.Tabs
 
             if (tab.Controls["textBoxFfmpegPath2"] is TextBox tb3)
                 PathFfmpeg = tb3;
-            PathFfmpeg.Text = Config.FfmpegPath;
+            PathFfmpeg.Text = Config.FfMpegPath;
 
             if (tab.Controls["startTime"] is TextBox tb4)
                 StartTime = tb4;
@@ -67,21 +66,8 @@ namespace Doppler.Tabs
         private void Launch(object sender, EventArgs e)
         {
             Logger.Info("Launch video truncater");
-            string argsCmd = $"-i \"{Config.SourcePath}\" -ss  {Config.StartTime} -to {Config.EndTime} -c copy \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}-{Config.StartTime.Replace(":", "_")}-{Config.EndTime.Replace(":", "_")}.mp4\"";
-            Logger.Debug($"{Config.FfmpegPath} {argsCmd}");
-
-            using (Process process = new Process())
-            {
-                process.StartInfo = new ProcessStartInfo
-                {
-                    FileName = Config.FfmpegPath,
-                    UseShellExecute = true,
-                    Arguments = argsCmd,
-                };
-                process.Start();
-            }
-
-            Process.Start("explorer.exe", Config.DestinationFolderPath);
+            VideoService service = new VideoService(Config);
+            service.TruncateVideo();
         }
 
         private void DefinePath(object sender, EventArgs e)
@@ -107,7 +93,7 @@ namespace Doppler.Tabs
             {
                 var filePath = FileManager.SearchFile();
                 PathFfmpeg.Text = filePath;
-                Config.FfmpegPath = filePath;
+                Config.FfMpegPath = filePath;
                 Config.Save();
             }
         }

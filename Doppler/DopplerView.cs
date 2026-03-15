@@ -1,5 +1,6 @@
-﻿using Doppler.Tabs;
-using Doppler.Utils;
+﻿using Doppler.Components;
+using Doppler.Core.Utils;
+using Doppler.Tabs;
 using NLog;
 using System;
 using System.Diagnostics;
@@ -7,8 +8,8 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
-// TODO par defaut si on choisit un fichier source on selectionne le meme dossier de resultat
 // TODO factoriser les definePath
+// TODO par defaut si on choisit un fichier source on selectionne le meme dossier de resultat
 namespace Doppler
 {
     public partial class DopplerView : Form
@@ -71,7 +72,7 @@ namespace Doppler
             VideoTruncater = new VideoTruncater(Config, FileManager);
             MpConverter = new MpConverter(Config, FileManager);
             VideoMerger = new VideoMerger(Config, FileManager);
-            PdfCombiner = new PdfCombiner();
+            PdfCombiner = new PdfCombiner(Config);
             ImageToPdfConverter = new ImageToPdfConverter();
             WatermarkPdf = new WatermarkPdf(Config, FileManager);
             SettignsTab = new Settings(Config, this);
@@ -113,7 +114,60 @@ namespace Doppler
             tabWatermark.Text = Language.GetString("UI_Tab7");
             tabSettings.Text = Language.GetString("UI_Tab8");
 
-            // TODO finir les traductions
+            label1.Text = Language.GetString("UI_Label1");
+            label2.Text = Language.GetString("UI_Label2");
+            label3.Text = Language.GetString("L_Location_FFMPEG");
+            label4.Text = Language.GetString("UI_Label4");
+            label5.Text = Language.GetString("UI_Label5");
+            label6.Text = Language.GetString("UI_Label6");
+            label7.Text = Language.GetString("UI_Label7");
+            label8.Text = Language.GetString("UI_Label8");
+            label9.Text = Language.GetString("L_Location_FFMPEG");
+            label10.Text = Language.GetString("UI_Label10");
+            label11.Text = Language.GetString("UI_Label11");
+            label12.Text = Language.GetString("L_Location_FFMPEG");
+            label13.Text = Language.GetString("UI_Label13");
+            label14.Text = Language.GetString("UI_Label14");
+            label15.Text = Language.GetString("L_Location_FFMPEG");
+            label16.Text = Language.GetString("UI_Label16");
+            label17.Text = Language.GetString("UI_Label17");
+            label18.Text = Language.GetString("UI_Label18");
+            label19.Text = Language.GetString("UI_Label19");
+            label20.Text = Language.GetString("UI_Label20");
+            label21.Text = Language.GetString("UI_Label21");
+
+            linkLabel1.Text = Language.GetString("UI_LinkLabel1");
+
+            button3.Text = Language.GetString("L_Download");
+            button5.Text = Language.GetString("L_Download");
+            button7.Text = Language.GetString("L_Download");
+            button9.Text = Language.GetString("L_Download");
+
+            destinationFolderButton.Text = Language.GetString("L_Choose");
+            destinationFolderButton2.Text = Language.GetString("L_Choose");
+            destinationFolderButton3.Text = Language.GetString("L_Choose");
+            destinationFolderButton4.Text = Language.GetString("L_Choose");
+            sourceVideoButton.Text = Language.GetString("L_Choose");
+            sourceVideoButton2.Text = Language.GetString("L_Choose");
+            sourceVideoButton3.Text = Language.GetString("L_Choose");
+            sourceVideoButton4.Text = Language.GetString("L_Choose");
+            sourceVideoButton5.Text = Language.GetString("L_Choose");
+            sourceMusicButton.Text = Language.GetString("L_Choose");
+            ffmpegButton.Text = Language.GetString("L_Choose");
+            ffmpegButton2.Text = Language.GetString("L_Choose");
+            ffmpegButton3.Text = Language.GetString("L_Choose");
+            ffmpegButton4.Text = Language.GetString("L_Choose");
+
+            resetFiles.Text = Language.GetString("L_Reset");
+            resetFiles2.Text = Language.GetString("L_Reset");
+
+            ConvertImageButton.Text = Language.GetString("UI_ButtonConvertImage");
+            ImageToPdfButton.Text = Language.GetString("UI_ButtonImageToPdf");
+            MergeVideoButton.Text = Language.GetString("UI_ButtonMergeVideo");
+            MpConvertButton.Text = Language.GetString("UI_ButtonMpConvert");
+            PdfCombineButton.Text = Language.GetString("UI_ButtonPdfCombine");
+            TruncateVideoButton.Text = Language.GetString("UI_ButtonTruncateVideo");
+            WatermarkButton.Text = Language.GetString("UI_ButtonWatermark");
         }
 
         private void RedirectToDownload(object sender, EventArgs e)
@@ -160,7 +214,7 @@ namespace Doppler
             MessageBox.Show("multi-tool to process files (audio/video)");
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void SelectedIndexChanged(object sender, EventArgs e)
         {
             var current = tabControl1.SelectedIndex;
             Config.CurrentTab = current;

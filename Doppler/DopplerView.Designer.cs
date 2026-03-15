@@ -112,7 +112,6 @@ namespace Doppler
             this.flowLayoutFiles2 = new System.Windows.Forms.FlowLayoutPanel();
             this.ImageToPdfButton = new System.Windows.Forms.Button();
             this.tabWatermark = new System.Windows.Forms.TabPage();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.label21 = new System.Windows.Forms.Label();
             this.WatermarkButton = new System.Windows.Forms.Button();
             this.textBoxWatermark = new System.Windows.Forms.TextBox();
@@ -174,7 +173,7 @@ namespace Doppler
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1027, 486);
             this.tabControl1.TabIndex = 16;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
             // 
             // tabVideoToImage
             // 
@@ -979,7 +978,6 @@ namespace Doppler
             // tabWatermark
             // 
             this.tabWatermark.BackColor = System.Drawing.SystemColors.Control;
-            this.tabWatermark.Controls.Add(this.progressBar3);
             this.tabWatermark.Controls.Add(this.label21);
             this.tabWatermark.Controls.Add(this.WatermarkButton);
             this.tabWatermark.Controls.Add(this.textBoxWatermark);
@@ -992,14 +990,6 @@ namespace Doppler
             this.tabWatermark.Size = new System.Drawing.Size(1019, 457);
             this.tabWatermark.TabIndex = 7;
             this.tabWatermark.Text = "WatermarkPDF";
-            // 
-            // progressBar3
-            // 
-            this.progressBar3.Location = new System.Drawing.Point(216, 241);
-            this.progressBar3.Margin = new System.Windows.Forms.Padding(4);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(604, 28);
-            this.progressBar3.TabIndex = 50;
             // 
             // label21
             // 
@@ -1238,6 +1228,5 @@ namespace Doppler
         public System.Windows.Forms.TextBox textBoxSourceFile6;
         public System.Windows.Forms.Label label20;
         public System.Windows.Forms.Label label21;
-        public System.Windows.Forms.ProgressBar progressBar3;
     }
 }

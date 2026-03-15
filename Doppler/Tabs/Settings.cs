@@ -1,12 +1,8 @@
 ﻿using Addams.Core.Exceptions;
-using Doppler.Components;
-using Doppler.Utils;
+using Doppler.Core.Utils;
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Doppler.Tabs
@@ -38,7 +34,6 @@ namespace Doppler.Tabs
 
             LanguageCb.SelectedValue = Config.AppLanguage;
             LanguageCb.SelectedIndexChanged += ChangeLanguage;
-
         }
 
         private void SetComboLanguage()
