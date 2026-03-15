@@ -1,8 +1,7 @@
-﻿using Doppler.Utils;
+﻿using Doppler.Components;
+using Doppler.Core.Services;
 using NLog;
 using System;
-using System.Diagnostics;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Doppler.Tabs
@@ -39,7 +38,7 @@ namespace Doppler.Tabs
 
             if (tab.Controls["textBoxFfmpegPath4"] is TextBox tb4)
                 PathFfmpeg = tb4;
-            PathFfmpeg.Text = Config.FfmpegPath;
+            PathFfmpeg.Text = Config.FfMpegPath;
 
             if (tab.Controls["sourceVideoButton3"] is Button btn)
                 SourceButton1 = btn;
@@ -66,24 +65,8 @@ namespace Doppler.Tabs
         private void Launch(object sender, EventArgs e)
         {
             Logger.Info("Launch video merger");
-            string tempFile = Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
-            File.WriteAllText(tempFile, $"file '{Config.SourcePath}'\nfile '{Config.MergePath}'");
-
-            string argsCmd = $"-f concat -safe 0 -i {tempFile} -c copy \"{Path.Combine(Config.DestinationFolderPath, "output.mp4")}\"";
-            Logger.Debug($"{Config.FfmpegPath} {argsCmd}");
-
-            using (Process process = new Process())
-            {
-                process.StartInfo = new ProcessStartInfo
-                {
-                    FileName = Config.FfmpegPath,
-                    UseShellExecute = true,
-                    Arguments = argsCmd,
-                };
-                process.Start();
-            }
-
-            Process.Start("explorer.exe", Config.DestinationFolderPath);
+            VideoService service = new VideoService(Config);
+            service.MergeVideo();
         }
 
         private void DefinePath(object sender, EventArgs e)
@@ -117,7 +100,7 @@ namespace Doppler.Tabs
             {
                 var filePath = FileManager.SearchFile();
                 PathFfmpeg.Text = filePath;
-                Config.FfmpegPath = filePath;
+                Config.FfMpegPath = filePath;
                 Config.Save();
             }
         }

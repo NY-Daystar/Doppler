@@ -1,7 +1,6 @@
-﻿using Doppler.Utils;
+﻿using Doppler.Core.Services;
+using Doppler.Core.Utils;
 using NLog;
-using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,15 +12,20 @@ namespace Doppler.Tabs
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+        private readonly DopplerConfig Config;
+
         private FlowLayoutPanel FlowLayoutFiles;
         private ProgressBar ProgressBar;
         private Button ResetButton, CombinerButton;
 
-        private List<DopplerFile> Files = new List<DopplerFile> { };
+        private readonly List<DopplerFile> Files = new List<DopplerFile> { };
 
         private const string Output = "combine";
 
-        public PdfCombiner() { }
+        public PdfCombiner(DopplerConfig config)
+        {
+            Config = config;
+        }
 
         public void AttachComponents(TabPage tab)
         {
@@ -63,29 +67,14 @@ namespace Doppler.Tabs
             if (sfd.ShowDialog() != DialogResult.OK)
                 return;
 
+            var service = new PdfService(Config);
+
+            ProgressBar.Value = 0;
+            ProgressBar.Visible = true;
+
             try
             {
-                ProgressBar.Value = 0;
-                ProgressBar.Visible = true;
-
-                var output = new PdfDocument();
-
-                for (int i = 0; i < Files.Count; i++)
-                {
-                    PdfDocument input = PdfReader.Open(Files[i].Path, PdfDocumentOpenMode.Import);
-
-                    for (int p = 0; p < input.PageCount; p++)
-                    {
-                        output.AddPage(input.Pages[p]);
-                    }
-
-                    ProgressBar.Value = (int)((i + 1) * 100.0 / Files.Count);
-                    Application.DoEvents();
-                }
-
-                output.Save(sfd.FileName);
-                output.Close();
-
+                service.CombinePdf(sfd.FileName, Files);
                 MessageBox.Show("Fusion succesful");
                 ResetFiles(null, null);
 
@@ -132,8 +121,10 @@ namespace Doppler.Tabs
 
             foreach (var file in Files)
             {
-                Label label = new Label();
-                label.Text = file.Name;
+                Label label = new Label
+                {
+                    Text = file.Name
+                };
                 Logger.Info(file.Path);
                 FlowLayoutFiles.Controls.Add(label);
             }

@@ -1,10 +1,9 @@
 ﻿using Doppler.Components;
-using Doppler.Utils;
+using Doppler.Core.Services;
+using Doppler.Core.Utils;
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Doppler.Tabs
@@ -44,7 +43,7 @@ namespace Doppler.Tabs
 
             if (tab.Controls["textBoxFfmpegPath3"] is TextBox tb3)
                 PathFfmpeg = tb3;
-            PathFfmpeg.Text = Config.FfmpegPath;
+            PathFfmpeg.Text = Config.FfMpegPath;
 
             if (tab.Controls["sourceMusicButton"] is Button btn)
                 SourceButton = btn;
@@ -78,24 +77,8 @@ namespace Doppler.Tabs
         private void Launch(object sender, EventArgs e)
         {
             Logger.Info($"Launch {FormatSelected} Converter");
-            string argsCmd = $"-i \"{Config.SourcePath}\" -codec:a libmp3lame -qscale:a 2 \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}.mp3\"";
-            if(FormatSelected.Equals(FormatConversion.MP4))
-                argsCmd = $"-i \"{Config.SourcePath}\" -c copy \"{Config.DestinationFolderPath}/{Path.GetFileName(Config.SourcePath).Split('.')[0]}.mp4\"";
-            
-            Logger.Debug($"{Config.FfmpegPath} {argsCmd}");
-
-            using (Process process = new Process())
-            {
-                process.StartInfo = new ProcessStartInfo
-                {
-                    FileName = Config.FfmpegPath,
-                    UseShellExecute = true,
-                    Arguments = argsCmd,
-                };
-                process.Start();
-            }
-
-            Process.Start("explorer.exe", Config.DestinationFolderPath);
+            MusicService service = new MusicService(Config);
+            service.ConvertToMp(FormatSelected);
         }
 
         private void SelectFormat(object sender, EventArgs e)
@@ -127,7 +110,7 @@ namespace Doppler.Tabs
             {
                 var filePath = FileManager.SearchFile();
                 PathFfmpeg.Text = filePath;
-                Config.FfmpegPath = filePath;
+                Config.FfMpegPath = filePath;
                 Config.Save();
             }
         }

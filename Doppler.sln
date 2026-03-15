@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doppler", "Doppler\Doppler.
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DopplerSetup", "DopplerSetup\DopplerSetup.vdproj", "{C4E9F159-D813-F880-B1F6-C6735E441A98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doppler.Core", "Doppler.Core\Doppler.Core.csproj", "{64172FF1-A89D-4446-820C-60FE842AA05A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doppler.Tests", "Doppler.Tests\Doppler.Tests.csproj", "{B6586F73-3E3F-4F1E-A649-F328F74B2D83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,22 @@ Global
 		{C4E9F159-D813-F880-B1F6-C6735E441A98}.Release|Any CPU.ActiveCfg = Release
 		{C4E9F159-D813-F880-B1F6-C6735E441A98}.Release|Any CPU.Build.0 = Release
 		{C4E9F159-D813-F880-B1F6-C6735E441A98}.Release|x64.ActiveCfg = Release
+		{64172FF1-A89D-4446-820C-60FE842AA05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64172FF1-A89D-4446-820C-60FE842AA05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64172FF1-A89D-4446-820C-60FE842AA05A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{64172FF1-A89D-4446-820C-60FE842AA05A}.Debug|x64.Build.0 = Debug|Any CPU
+		{64172FF1-A89D-4446-820C-60FE842AA05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64172FF1-A89D-4446-820C-60FE842AA05A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64172FF1-A89D-4446-820C-60FE842AA05A}.Release|x64.ActiveCfg = Release|Any CPU
+		{64172FF1-A89D-4446-820C-60FE842AA05A}.Release|x64.Build.0 = Release|Any CPU
+		{B6586F73-3E3F-4F1E-A649-F328F74B2D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6586F73-3E3F-4F1E-A649-F328F74B2D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6586F73-3E3F-4F1E-A649-F328F74B2D83}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B6586F73-3E3F-4F1E-A649-F328F74B2D83}.Debug|x64.Build.0 = Debug|Any CPU
+		{B6586F73-3E3F-4F1E-A649-F328F74B2D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6586F73-3E3F-4F1E-A649-F328F74B2D83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6586F73-3E3F-4F1E-A649-F328F74B2D83}.Release|x64.ActiveCfg = Release|Any CPU
+		{B6586F73-3E3F-4F1E-A649-F328F74B2D83}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

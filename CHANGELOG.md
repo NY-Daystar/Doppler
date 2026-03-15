@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Project releases
 
+### v1.8.0 - March 18th, 2026 - New code structure
+
+#### Added
+
+- `Doppler.Core` project and introduce `Service` notion (PdfService, VideoService)
+- `Doppler.Tests` project to tests services and functionalities
+- New languages (german, italian, spanish)
+
 ### v1.7.0 - March 15th, 2026 - Resolve issues
 
 #### Added
