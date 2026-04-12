@@ -57,7 +57,6 @@ namespace Doppler.Core.Services
                 };
 
                 process.Start();
-                process.WaitForExit();
             }
         }
     }

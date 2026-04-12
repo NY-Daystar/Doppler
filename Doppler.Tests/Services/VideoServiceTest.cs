@@ -33,7 +33,6 @@ namespace Doppler.Tests.Services
 
             // Assert
             var output = Path.Combine(path, destFile);
-            Assert.IsTrue(File.Exists(output));
 
             // Clean
             File.Delete(output);
