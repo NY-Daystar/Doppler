@@ -49,7 +49,6 @@ namespace Doppler.Core.Services
                 };
 
                 process.Start();
-                process.WaitForExit();
             }
 
             File.Delete(tempFile);
@@ -128,7 +127,6 @@ namespace Doppler.Core.Services
                 };
 
                 process.Start();
-                process.WaitForExit();
             }
         }
     }
